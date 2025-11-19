@@ -1,0 +1,87 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+venv/
+env/
+ENV/
+.venv
+
+# Models and data
+*.bin
+*.onnx
+*.pt
+*.pth
+*.safetensors
+models/
+checkpoints/
+datasets/
+cache/
+
+# Evaluation results
+results/
+outputs/
+logs/
+*.log
+
+# Jupyter
+.ipynb_checkpoints
+*.ipynb
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node.js (for browser testing)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Build artifacts
+*.wasm
+dist/
+out/
+
+# Temporary
+tmp/
+temp/
+*.tmp
+
+# Measurement data
+power_measurements/
+energy_logs/
+
+# Secrets
+*.key
+*.pem
+credentials.json
