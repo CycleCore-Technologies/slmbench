@@ -1,0 +1,213 @@
+/**
+ * SLMBench Design Tokens
+ * Borrowed from CycleCore Technologies (/home/rain/LangManus/cyclecore-site/)
+ * Black Minimalist | Bold & Thoughtful | Privacy-First
+ *
+ * Design Philosophy:
+ * - Aggressive minimalism (luxury through space)
+ * - Ultra-high contrast (black + white + single accent)
+ * - Developer-focused aesthetic
+ * - No compromise on boldness
+ *
+ * Source: CC-WEB (cyclecore.ai) - 2025-11-18
+ * Authority: Constitutional Amendment 001 Section 5.2
+ */
+
+:root {
+  /* ==================== */
+  /* COLOR SYSTEM         */
+  /* ==================== */
+
+  /* Blacks & Grays (Linear-inspired dark palette) */
+  --cc-black: #0a0a0a;          /* Pure black background */
+  --cc-gray-900: #1a1a1a;       /* Elevated surfaces */
+  --cc-gray-800: #2a2a2a;       /* Cards, modals */
+  --cc-gray-700: #3a3a3a;       /* Borders, dividers */
+  --cc-gray-600: #4a4a4a;       /* Disabled states */
+
+  /* Text Hierarchy (white to gray) */
+  --cc-text-primary: #ffffff;   /* Headlines, body */
+  --cc-text-secondary: #a0a0a0; /* Subheads, meta */
+  --cc-text-tertiary: #6b7280;  /* Captions, disabled */
+
+  /* Accent: Cyan (Privacy/Tech association) */
+  --cc-accent-cyan: #00d4ff;    /* Primary actions, links */
+  --cc-accent-cyan-dark: #0099ff; /* Hover states */
+  --cc-accent-cyan-dim: rgba(0, 212, 255, 0.15); /* Subtle highlights */
+
+  /* Terminal Green (Optional alternative accent) */
+  --cc-terminal-green: #00ff88;  /* Matrix/hacker vibe */
+
+  /* Gradients */
+  --cc-gradient-text: linear-gradient(135deg, var(--cc-accent-cyan) 0%, #0099ff 100%);
+  --cc-gradient-bg: linear-gradient(180deg, var(--cc-black) 0%, var(--cc-gray-900) 100%);
+  --cc-gradient-border: linear-gradient(90deg, transparent 0%, var(--cc-accent-cyan) 50%, transparent 100%);
+
+  /* Semantic Colors */
+  --cc-success: #10b981;
+  --cc-warning: #f59e0b;
+  --cc-error: #ef4444;
+
+  /* ==================== */
+  /* TYPOGRAPHY SYSTEM    */
+  /* ==================== */
+
+  /* Font Families */
+  --cc-font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --cc-font-mono: 'JetBrains Mono', 'Cascadia Code', 'Courier New', monospace;
+
+  /* Font Weights */
+  --cc-weight-light: 300;
+  --cc-weight-regular: 400;
+  --cc-weight-medium: 500;
+  --cc-weight-semibold: 600;
+  --cc-weight-bold: 700;
+  --cc-weight-black: 900;  /* Ultra-bold for hero */
+
+  /* Type Scale (Aggressive/Dramatic) */
+  --cc-text-xs: 0.75rem;          /* 12px */
+  --cc-text-sm: 0.875rem;         /* 14px */
+  --cc-text-base: 1rem;           /* 16px */
+  --cc-text-lg: 1.125rem;         /* 18px */
+  --cc-text-xl: 1.25rem;          /* 20px */
+  --cc-text-2xl: 1.5rem;          /* 24px */
+  --cc-text-3xl: 2rem;            /* 32px */
+  --cc-text-4xl: 2.5rem;          /* 40px */
+  --cc-text-5xl: 3rem;            /* 48px */
+  --cc-text-6xl: 3.75rem;         /* 60px */
+  --cc-text-7xl: 4.5rem;          /* 72px */
+  --cc-text-8xl: 6rem;            /* 96px */
+  --cc-text-hero: clamp(3rem, 8vw, 7rem); /* Responsive hero (48-112px) */
+
+  /* Line Heights */
+  --cc-leading-tight: 1.1;        /* Headlines */
+  --cc-leading-snug: 1.3;         /* Subheads */
+  --cc-leading-normal: 1.5;       /* Body */
+  --cc-leading-relaxed: 1.7;      /* Long-form */
+
+  /* Letter Spacing */
+  --cc-tracking-tighter: -0.05em;
+  --cc-tracking-tight: -0.025em;
+  --cc-tracking-normal: 0;
+  --cc-tracking-wide: 0.025em;
+  --cc-tracking-wider: 0.05em;
+
+  /* ==================== */
+  /* SPACING SYSTEM       */
+  /* ==================== */
+
+  /* Dramatic Scale (Luxury through Space) */
+  --cc-space-xs: 0.5rem;     /* 8px */
+  --cc-space-sm: 1rem;       /* 16px */
+  --cc-space-md: 2rem;       /* 32px */
+  --cc-space-lg: 4rem;       /* 64px */
+  --cc-space-xl: 6rem;       /* 96px */
+  --cc-space-2xl: 8rem;      /* 128px */
+  --cc-space-3xl: 12rem;     /* 192px */
+  --cc-space-4xl: 16rem;     /* 256px */
+
+  /* Component-Specific Spacing */
+  --cc-section-padding-y: var(--cc-space-xl);      /* 96px vertical */
+  --cc-section-padding-x: var(--cc-space-md);      /* 32px horizontal */
+  --cc-hero-padding-y: var(--cc-space-3xl);        /* 192px vertical */
+  --cc-card-padding: var(--cc-space-lg);           /* 64px */
+  --cc-container-padding: var(--cc-space-md);      /* 32px */
+
+  /* ==================== */
+  /* LAYOUT & GRID        */
+  /* ==================== */
+
+  /* Container Widths */
+  --cc-container-sm: 640px;
+  --cc-container-md: 768px;
+  --cc-container-lg: 1024px;
+  --cc-container-xl: 1280px;
+  --cc-container-2xl: 1536px;
+
+  /* Border Radius */
+  --cc-radius-sm: 0.375rem;   /* 6px */
+  --cc-radius-md: 0.5rem;     /* 8px */
+  --cc-radius-lg: 1rem;       /* 16px */
+  --cc-radius-xl: 1.5rem;     /* 24px */
+  --cc-radius-2xl: 2rem;      /* 32px */
+  --cc-radius-full: 9999px;
+
+  /* Borders */
+  --cc-border-width: 1px;
+  --cc-border-width-thick: 2px;
+  --cc-border-color: var(--cc-gray-700);
+  --cc-border-color-accent: var(--cc-accent-cyan);
+
+  /* ==================== */
+  /* SHADOWS & EFFECTS    */
+  /* ==================== */
+
+  /* Shadow System (Subtle in dark mode) */
+  --cc-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --cc-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --cc-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  --cc-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+  --cc-shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+
+  /* Glow Effects (Cyan accent) */
+  --cc-glow-sm: 0 0 10px var(--cc-accent-cyan-dim);
+  --cc-glow-md: 0 0 20px var(--cc-accent-cyan-dim);
+  --cc-glow-lg: 0 0 40px var(--cc-accent-cyan-dim);
+
+  /* ==================== */
+  /* TRANSITIONS          */
+  /* ==================== */
+
+  /* Timing Functions */
+  --cc-ease-base: cubic-bezier(0.4, 0, 0.2, 1);
+  --cc-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --cc-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --cc-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Durations */
+  --cc-duration-fast: 150ms;
+  --cc-duration-base: 200ms;
+  --cc-duration-slow: 300ms;
+  --cc-duration-slower: 500ms;
+
+  /* Presets */
+  --cc-transition-base: all var(--cc-duration-base) var(--cc-ease-base);
+  --cc-transition-slow: all var(--cc-duration-slow) var(--cc-ease-out);
+  --cc-transition-colors: color var(--cc-duration-base) var(--cc-ease-base),
+                          background-color var(--cc-duration-base) var(--cc-ease-base),
+                          border-color var(--cc-duration-base) var(--cc-ease-base);
+
+  /* ==================== */
+  /* Z-INDEX LAYERS       */
+  /* ==================== */
+
+  --cc-z-base: 0;
+  --cc-z-dropdown: 1000;
+  --cc-z-sticky: 1100;
+  --cc-z-fixed: 1200;
+  --cc-z-modal-backdrop: 1300;
+  --cc-z-modal: 1400;
+  --cc-z-popover: 1500;
+  --cc-z-tooltip: 1600;
+}
+
+/* ==================== */
+/* RESPONSIVE OVERRIDES */
+/* ==================== */
+
+/* Mobile: Scale down dramatic spacing */
+@media (max-width: 768px) {
+  :root {
+    --cc-hero-padding-y: var(--cc-space-xl);        /* 96px instead of 192px */
+    --cc-section-padding-y: var(--cc-space-lg);     /* 64px instead of 96px */
+    --cc-card-padding: var(--cc-space-md);          /* 32px instead of 64px */
+    --cc-container-padding: var(--cc-space-sm);     /* 16px instead of 32px */
+  }
+}
+
+/* Large screens: Even more dramatic */
+@media (min-width: 1920px) {
+  :root {
+    --cc-hero-padding-y: var(--cc-space-4xl);       /* 256px for massive displays */
+  }
+}
