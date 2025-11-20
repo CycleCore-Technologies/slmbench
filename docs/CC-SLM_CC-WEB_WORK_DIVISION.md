@@ -83,7 +83,7 @@ SLMBench project scope has expanded significantly beyond initial planning:
 
 4. **Academic Papers**
    - Paper A: "Micro and Nano Language Models" (definitions, taxonomy)
-   - Paper B: "EdgeBench: Practical Evaluation for Edge AI" (benchmarks, results)
+   - Paper B: "SLM-Bench: Practical Evaluation for Edge AI" (benchmarks, results)
    - Research documentation
 
 5. **Content Creation** (Technical)

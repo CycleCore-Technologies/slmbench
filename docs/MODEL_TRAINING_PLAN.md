@@ -1,8 +1,8 @@
-# CycleCore MLM Series: Training Plan
+# CycleCore Maaza Series: Training Plan
 
 **Hardware**: NVIDIA RTX 4080 (16GB VRAM)
 **Timeline**: Weeks 1-4 (MVP phase)
-**Goal**: Train 3 baseline models while validating EdgeBench tasks
+**Goal**: Train 3 baseline models while validating SLM-Bench tasks
 
 ---
 
@@ -11,7 +11,7 @@
 ### Feedback Loop Approach
 
 ```
-EdgeBench Task → Synthetic Data → Train MLM → Evaluate → Refine Task
+SLM-Bench Task → Synthetic Data → Train MLM → Evaluate → Refine Task
 ```
 
 **Why This Works**:
@@ -31,11 +31,11 @@ EdgeBench Task → Synthetic Data → Train MLM → Evaluate → Refine Task
 - Distilled via:
   1. Generate synthetic data with teacher
   2. Train student to match teacher outputs
-  3. Evaluate on EdgeBench
+  3. Evaluate on SLM-Bench
 
 ---
 
-## Model 1: CycleCore-MLM-135M-JSON
+## Model 1: CycleCore Maaza SLM-135M-JSON
 
 **Timeline**: Week 2 (Days 8-14)
 **Training Time**: 24-48 hours on 4080
@@ -104,13 +104,13 @@ training_args = TrainingArguments(
 ### Deliverables
 
 - [ ] Fine-tuned model weights
-- [ ] Hugging Face repo: `CycleCore/CycleCore-MLM-135M-JSON`
+- [ ] Hugging Face repo: `CycleCore/CycleCore Maaza SLM-135M-JSON`
 - [ ] Model card (architecture, training, benchmarks)
 - [ ] EdgeJSON results (add to leaderboard)
 
 ---
 
-## Model 2: CycleCore-MLM-60M-Intent
+## Model 2: CycleCore Maaza NLM-60M-Intent
 
 **Timeline**: Week 2-3 (Days 12-18)
 **Training Time**: 18-24 hours on 4080
@@ -181,13 +181,13 @@ training_args = TrainingArguments(
 ### Deliverables
 
 - [ ] Distilled model weights
-- [ ] Hugging Face repo: `CycleCore/CycleCore-MLM-60M-Intent`
+- [ ] Hugging Face repo: `CycleCore/CycleCore Maaza NLM-60M-Intent`
 - [ ] Model card + distillation methodology
 - [ ] EdgeIntent results (add to leaderboard)
 
 ---
 
-## Model 3: CycleCore-MLM-120M-Balanced
+## Model 3: CycleCore Maaza SLM-120M-Balanced
 
 **Timeline**: Week 3-4 (Days 19-28)
 **Training Time**: 36-48 hours on 4080
@@ -259,14 +259,14 @@ training_args = TrainingArguments(
 - JSONExact > 75%
 - Intent Top-1 > 88%
 - FuncCall F1 > 0.80
-- Competitive with Qwen2.5-1.5B on EdgeBench
+- Competitive with Qwen2.5-1.5B on SLM-Bench
 
 ### Deliverables
 
 - [ ] Multi-task distilled model
-- [ ] Hugging Face repo: `CycleCore/CycleCore-MLM-120M-Balanced`
+- [ ] Hugging Face repo: `CycleCore/CycleCore Maaza SLM-120M-Balanced`
 - [ ] Model card + multi-task methodology
-- [ ] Full EdgeBench results (all 3 tasks)
+- [ ] Full SLM-Bench results (all 3 tasks)
 
 ---
 
@@ -279,7 +279,7 @@ training_args = TrainingArguments(
 ### Specifications
 
 **Architecture**:
-- Distill from CycleCore-MLM-60M-Intent
+- Distill from CycleCore Maaza NLM-60M-Intent
 - Target: 5M params
 - Layers: 6, Hidden: 256, Heads: 4
 - Context: 512 tokens
@@ -323,7 +323,7 @@ training_args = TrainingArguments(
 - **Mon**: Start multi-task training (36-48 hour run)
 - **Tue-Wed**: Training continues
 - **Thu**: Training completes, evaluate
-- **Fri**: Full EdgeBench evaluation, leaderboard update
+- **Fri**: Full SLM-Bench evaluation, leaderboard update
 
 **Idle Time**: ~40-50% (available for other projects like Orchestra, ComplianceLogger)
 
@@ -377,14 +377,14 @@ models/
 
 **Naming Convention**:
 ```
-CycleCore/CycleCore-MLM-135M-JSON
-CycleCore/CycleCore-MLM-60M-Intent
-CycleCore/CycleCore-MLM-120M-Balanced
+CycleCore/CycleCore Maaza SLM-135M-JSON
+CycleCore/CycleCore Maaza NLM-60M-Intent
+CycleCore/CycleCore Maaza SLM-120M-Balanced
 ```
 
 **Model Card Template**:
 ```markdown
-# CycleCore-MLM-135M-JSON
+# CycleCore Maaza SLM-135M-JSON
 
 ## Model Description
 Fine-tuned SmolLM2-135M specialized for JSON extraction tasks.
@@ -414,7 +414,7 @@ Fine-tuned SmolLM2-135M specialized for JSON extraction tasks.
 
 **Model Weights**: Apache 2.0 (open source, commercial use OK)
 **Training Code**: MIT License
-**EdgeBench Data**: CC BY 4.0 (attribution required)
+**SLM-Bench Data**: CC BY 4.0 (attribution required)
 
 ---
 
@@ -450,7 +450,7 @@ Fine-tuned SmolLM2-135M specialized for JSON extraction tasks.
 
 **By Day 30**:
 - ✅ 3 CycleCore MLMs trained and published
-- ✅ All 3 evaluated on EdgeBench
+- ✅ All 3 evaluated on SLM-Bench
 - ✅ Added to slmbench.com leaderboard
 - ✅ 4080 utilization: 50-60% (training weeks)
 
@@ -462,5 +462,5 @@ Fine-tuned SmolLM2-135M specialized for JSON extraction tasks.
 ---
 
 **Status**: READY FOR EXECUTION
-**Dependencies**: EdgeBench datasets, 4080 access, Hugging Face account
+**Dependencies**: SLM-Bench datasets, 4080 access, Hugging Face account
 **Owner**: CC-SLM

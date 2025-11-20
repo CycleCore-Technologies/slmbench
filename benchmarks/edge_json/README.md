@@ -169,7 +169,7 @@ We're currently running baseline evaluations on:
 - SmolLM2-135M, SmolLM2-360M, SmolLM2-1.7B
 - Qwen2.5-0.5B, Qwen2.5-1.5B
 - Llama 3.2-1B, Llama 3.2-3B
-- CycleCore-MLM-135M-JSON (fine-tuned for this task)
+- CycleCore Maaza SLM-135M-JSON (fine-tuned for this task)
 
 Results will be published in Week 2 blog post and added to the leaderboard.
 

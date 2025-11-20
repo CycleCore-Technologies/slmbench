@@ -104,7 +104,7 @@ db4d773 Initial commit: SLMBench (SLM-Bench Edge Pack) project structure
 **Week 1 Review**:
 - Document learnings
 - Adjust Week 2 plan if needed
-- Prepare for CycleCore-MLM-135M-JSON training
+- Prepare for CycleCore Maaza SLM-135M-JSON training
 
 ---
 
@@ -148,7 +148,7 @@ db4d773 Initial commit: SLMBench (SLM-Bench Edge Pack) project structure
 ## Integration with GPT Research
 
 **Referenced from Part 2 GPT Chat**:
-- Training time estimates (informed CycleCore-MLM planning)
+- Training time estimates (informed CycleCore Maaza SLM planning)
 - Reasoning/thinking capabilities (future enhancement)
 - 4K-8K context windows (Paper A will reference)
 - Multi-snippet aggregator mode (future feature)
@@ -166,7 +166,7 @@ db4d773 Initial commit: SLMBench (SLM-Bench Edge Pack) project structure
 - ✅ Week 1 Day 1-2: Website foundation + EdgeJSON dataset
 - ⏳ Week 1 Day 3-5: EdgeJSON expansion + baseline evals
 - ⏳ Week 1 Day 6-7: Blog post #2 + 4080 setup
-- 📅 Week 2: CycleCore-MLM-135M-JSON training
+- 📅 Week 2: CycleCore Maaza SLM-135M-JSON training
 - 📅 Week 3: EdgeIntent + leaderboard launch
 - 📅 Week 4: EdgeFuncCall + evaluation service
 

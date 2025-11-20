@@ -67,11 +67,11 @@ The SLM-Bench paper introduced energy measurement, which is excellent. But the m
 
 ---
 
-## The Solution: EdgeBench Suite
+## The Solution: SLM-Bench Suite
 
 This is why we're launching **CycleCore Technologies SLMBench**.
 
-Our **EdgeBench** suite consists of three practical tasks designed specifically for edge AI evaluation:
+Our **SLM-Bench** suite consists of three practical tasks designed specifically for edge AI evaluation:
 
 ### EdgeJSON: JSON Extraction Benchmark
 
@@ -138,11 +138,11 @@ Output: {
 
 ## Our Approach: Transparent, Reproducible, Independent
 
-EdgeBench is built on three principles:
+SLM-Bench is built on three principles:
 
 ### 1. Practical Focus
 
-We're not replacing academic benchmarks - we complement them. MMLU tells you if a model can reason; EdgeBench tells you if it can **ship**.
+We're not replacing academic benchmarks - we complement them. MMLU tells you if a model can reason; SLM-Bench tells you if it can **ship**.
 
 ### 2. Transparent Methodology
 
@@ -168,12 +168,12 @@ We're not just building benchmarks - we're training baseline models.
 
 Meet the **CycleCore Micro Language Models (MLMs)**:
 
-- **CycleCore-MLM-135M-JSON**: Fine-tuned for JSON extraction (launching Week 2)
-- **CycleCore-MLM-60M-Intent**: Ultra-compact intent classifier (Week 3)
-- **CycleCore-MLM-120M-Balanced**: Multi-task model (Week 4)
+- **CycleCore Maaza SLM-135M-JSON**: Fine-tuned for JSON extraction (launching Week 2)
+- **CycleCore Maaza SLM-60M-Intent**: Ultra-compact intent classifier (Week 3)
+- **CycleCore Maaza SLM-120M-Balanced**: Multi-task model (Week 4)
 
 These models serve dual purposes:
-1. **Baselines** for EdgeBench (validate benchmark quality)
+1. **Baselines** for SLM-Bench (validate benchmark quality)
 2. **Proof-of-concept** for task-specialized SLMs (not general chat)
 
 All trained on our NVIDIA RTX 4080, all open-sourced on Hugging Face.
@@ -183,13 +183,13 @@ All trained on our NVIDIA RTX 4080, all open-sourced on Hugging Face.
 ## Week-by-Week Roadmap
 
 **Week 1** (Current): EdgeJSON dataset + baseline evaluations
-**Week 2**: CycleCore-MLM-135M-JSON training, blog post with results
-**Week 3**: EdgeIntent benchmark + CycleCore-MLM-60M-Intent, **leaderboard launch**
-**Week 4**: EdgeFuncCall benchmark + CycleCore-MLM-120M-Balanced, **evaluation service launch**
+**Week 2**: CycleCore Maaza SLM-135M-JSON training, blog post with results
+**Week 3**: EdgeIntent benchmark + CycleCore Maaza SLM-60M-Intent, **leaderboard launch**
+**Week 4**: EdgeFuncCall benchmark + CycleCore Maaza SLM-120M-Balanced, **evaluation service launch**
 
 By Day 30, you'll be able to:
 - View the public leaderboard (10+ models evaluated)
-- Download EdgeBench and run it yourself (open-source)
+- Download SLM-Bench and run it yourself (open-source)
 - Request professional evaluation ($2.5K-$7.5K per model)
 
 ---
@@ -198,11 +198,11 @@ By Day 30, you'll be able to:
 
 You might be wondering about the "Edge Pack" branding.
 
-Simple: we're positioning EdgeBench as the **practical edge AI evaluation suite**. Academic SLM-Bench covers breadth; we cover depth in the tasks that matter for production deployment.
+Simple: we're positioning SLM-Bench as the **practical edge AI evaluation suite**. Academic SLM-Bench covers breadth; we cover depth in the tasks that matter for production deployment.
 
 Think of it as:
 - **Academic SLM-Bench**: Comprehensive research benchmark (15 models, 9 tasks, 23 datasets)
-- **EdgeBench (Edge Pack)**: Production deployment benchmark (JSON, Intent, FuncCall, cross-platform)
+- **SLM-Bench (Edge Pack)**: Production deployment benchmark (JSON, Intent, FuncCall, cross-platform)
 
 Complementary, not competitive.
 
@@ -210,7 +210,7 @@ Complementary, not competitive.
 
 ## Try It Yourself
 
-Want to run EdgeBench on your model?
+Want to run SLM-Bench on your model?
 
 **Coming Week 2**:
 - GitHub repository: `github.com/cyclecore/slmbench`
@@ -230,7 +230,7 @@ Three things:
 
 ### 1. We're Independent
 
-We don't sell models. We don't favor specific vendors. EdgeBench is a **transparent, independent evaluation service**.
+We don't sell models. We don't favor specific vendors. SLM-Bench is a **transparent, independent evaluation service**.
 
 Our leaderboard placement is free and permanent - we charge for the evaluation work, not for visibility.
 
@@ -245,7 +245,7 @@ Not: "Can it write poetry?" (though that's cool too).
 
 ### 3. We're Building It Live
 
-This isn't vaporware. We're building EdgeBench, training models, and publishing results week-by-week.
+This isn't vaporware. We're building SLM-Bench, training models, and publishing results week-by-week.
 
 Follow along:
 - **Blog**: Weekly updates (this is post #1 of many)
@@ -260,11 +260,11 @@ The SLM revolution is happening. Models that can run on Raspberry Pis, in browse
 
 But academic benchmarks weren't designed for edge deployment. They don't measure JSON validity, intent classification accuracy, or cross-platform performance.
 
-**EdgeBench does.**
+**SLM-Bench does.**
 
 We're building the practical evaluation suite that the edge AI community needs. Open-source harness, transparent methodology, independent results.
 
-Stay tuned for Week 2, when we publish EdgeJSON baseline results and launch CycleCore-MLM-135M-JSON.
+Stay tuned for Week 2, when we publish EdgeJSON baseline results and launch CycleCore Maaza SLM-135M-JSON.
 
 ---
 

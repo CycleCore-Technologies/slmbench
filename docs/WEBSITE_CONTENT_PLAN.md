@@ -14,7 +14,7 @@
 **Subhead**: "Edge Pack - Practical Benchmarks for Production SLM Deployment"
 
 **Value Proposition** (3-4 sentences):
-> While academic benchmarks focus on general capabilities, EdgeBench evaluates what matters for production edge AI: function calling, JSON extraction, and intent classification. Test your Small Language Models on real-world tasks across Raspberry Pi, laptops, and browsers.
+> While academic benchmarks focus on general capabilities, SLM-Bench evaluates what matters for production edge AI: function calling, JSON extraction, and intent classification. Test your Small Language Models on real-world tasks across Raspberry Pi, laptops, and browsers.
 
 **CTA Buttons**:
 - [View Leaderboard] (primary, links to `/leaderboard`)
@@ -22,7 +22,7 @@
 
 ### Three-Feature Grid
 
-**Feature 1: EdgeBench Suite**
+**Feature 1: SLM-Bench Suite**
 - Icon: 📊
 - **Title**: "Practical Edge AI Tasks"
 - **Description**: Evaluate SLMs on JSON extraction, intent classification, and function calling - the tasks that matter for production deployment.
@@ -37,7 +37,7 @@
 **Feature 3: Evaluation Service**
 - Icon: 🔬
 - **Title**: "Professional Evaluation"
-- **Description**: Get your SLM independently evaluated on EdgeBench. Detailed reports, energy measurement, cross-platform testing.
+- **Description**: Get your SLM independently evaluated on SLM-Bench. Detailed reports, energy measurement, cross-platform testing.
 - **Link**: Request evaluation → `/evaluation`
 
 ### Footer
@@ -53,7 +53,7 @@
 
 ### Layout
 
-**Title**: "EdgeBench Leaderboard"
+**Title**: "SLM-Bench Leaderboard"
 **Subtitle**: "Rankings updated as new models are evaluated. All results reproducible using our open-source harness."
 
 ### Table (Sortable)
@@ -166,7 +166,7 @@ Output: {
 
 ### Positioning
 
-> Get your Small Language Model independently evaluated on EdgeBench. CycleCore Technologies provides rigorous, transparent testing with detailed reports - perfect for model developers, hardware vendors, and enterprises deploying edge AI.
+> Get your Small Language Model independently evaluated on SLM-Bench. CycleCore Technologies provides rigorous, transparent testing with detailed reports - perfect for model developers, hardware vendors, and enterprises deploying edge AI.
 
 ### Pricing Tiers
 
@@ -184,7 +184,7 @@ Output: {
 - 1-hour consultation
 
 **Premium - $7,500**
-- Full EdgeBench suite (JSON + Intent + FuncCall)
+- Full SLM-Bench suite (JSON + Intent + FuncCall)
 - Baseline comparisons (vs 8 reference models)
 - Cross-platform testing (laptop + Pi 5 + browser)
 - Energy measurement (Joulescope protocol)
@@ -241,13 +241,13 @@ Output: {
 **Outline**:
 1. **The Problem**: Academic benchmarks (MMLU, HellaSwag) don't cover edge deployment needs
 2. **The Gap**: Missing function calling, JSON extraction, cross-platform testing
-3. **The Solution**: EdgeBench suite (JSON, Intent, FuncCall)
+3. **The Solution**: SLM-Bench suite (JSON, Intent, FuncCall)
 4. **CycleCore's Approach**: Practical tasks, transparent methodology, open-source harness
 5. **What's Coming**: Leaderboard, evaluation service, CycleCore MLMs
-6. **Call to Action**: Try EdgeBench, submit your model
+6. **Call to Action**: Try SLM-Bench, submit your model
 
 **Images**:
-- EdgeBench overview diagram (3 tasks)
+- SLM-Bench overview diagram (3 tasks)
 - Hardware platforms (Pi 5, laptop, browser)
 - Example EdgeJSON task (input → output)
 
@@ -350,13 +350,13 @@ Output: {
 ### CycleCore Technologies SLMBench
 
 **Mission**:
-> CycleCore Technologies SLMBench provides practical, transparent benchmarks for Small Language Models deployed at the edge. Our EdgeBench suite evaluates what matters for production: function calling, structured output, and cross-platform compatibility.
+> CycleCore Technologies SLMBench provides practical, transparent benchmarks for Small Language Models deployed at the edge. Our SLM-Bench suite evaluates what matters for production: function calling, structured output, and cross-platform compatibility.
 
 **Why We Exist**:
 - Academic benchmarks (MMLU, HellaSwag) focus on general capabilities
 - Edge deployment needs are different: JSON extraction, intent classification, energy efficiency
 - Existing SLM evaluations lack function calling, cross-platform testing
-- We fill the gap with EdgeBench + independent evaluation service
+- We fill the gap with SLM-Bench + independent evaluation service
 
 **Our Approach**:
 - **Practical**: Real-world tasks, not academic puzzles
@@ -414,7 +414,7 @@ python benchmarks/edge_json/scripts/eval.py \
 
 ### Documentation
 
-- [EdgeBench Spec](docs/EDGEBENCH_SPEC.md)
+- [SLM-Bench Spec](docs/EDGEBENCH_SPEC.md)
 - [Evaluation Guide](docs/EVALUATION_GUIDE.md)
 - [Paper A](papers/paper_a_mlm_edgebench/)
 
@@ -422,7 +422,7 @@ python benchmarks/edge_json/scripts/eval.py \
 
 ```bibtex
 @misc{cyclecore2025slmbench,
-  title={Micro Language Models and EdgeBench: A Benchmark Suite for Structured Tasks on Resource-Constrained Devices},
+  title={Micro Language Models and SLM-Bench: A Benchmark Suite for Structured Tasks on Resource-Constrained Devices},
   author={CycleCore Technologies Research Team},
   year={2025},
   eprint={...},

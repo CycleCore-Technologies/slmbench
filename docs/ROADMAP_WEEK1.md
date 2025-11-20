@@ -22,7 +22,7 @@
 # Create directory structure
 mkdir -p benchmarks/{edge_json,edge_intent,edge_funccall}/{dataset,scripts,results}
 mkdir -p models/{mlm_135m_json,mlm_60m_intent,mlm_120m_balanced}
-mkdir -p papers/paper_a_mlm_edgebench
+mkdir -p papers/paper_a_mlm_slm-bench
 mkdir -p website/{content,static/{css,js,images},templates}
 ```
 
@@ -45,7 +45,7 @@ git commit -m "docs: Add strategic plan and Week 1 roadmap"
   - Academic SLM-Bench gaps
   - Competitive landscape (SmolLM, Qwen, Llama 3.2)
   - Market validation (recent publications)
-- [ ] Document findings in `papers/paper_a_mlm_edgebench/RESEARCH_NOTES.md`
+- [ ] Document findings in `papers/paper_a_mlm_slm-bench/RESEARCH_NOTES.md`
 
 **Paper A Outline**:
 - [ ] Create section structure (1 hour)
@@ -169,7 +169,7 @@ git commit -m "docs: Add strategic plan and Week 1 roadmap"
 - [ ] Contributions: MLM/NLM definitions, EdgeBench, baselines
 - [ ] Paper structure overview
 
-**Deliverable**: `papers/paper_a_mlm_edgebench/sections/01-introduction.md`
+**Deliverable**: `papers/paper_a_mlm_slm-bench/sections/01-introduction.md`
 
 ---
 

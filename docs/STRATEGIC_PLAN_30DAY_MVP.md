@@ -11,8 +11,8 @@
 
 CycleCore Technologies SLMBench is positioning to own the "practical edge AI evaluation" category through a three-pronged strategy:
 
-1. **Build EdgeBench**: Function calling, JSON extraction, and intent classification benchmarks (gaps in academic SLM-Bench)
-2. **Train CycleCore MLM Series**: Use idle 4080 GPU to distill/train baseline models while validating benchmarks
+1. **Build SLM-Bench Practical Suite**: Function calling, JSON extraction, and intent classification benchmarks (gaps in academic SLM-Bench)
+2. **Train CycleCore Maaza Series**: Use idle 4080 GPU to distill/train baseline models while validating benchmarks
 3. **Publish Academic Papers**: Define MLM (Micro Language Models) and NLM (Nano Language Models) categories, establish thought leadership
 
 **30-Day Goal**: Launch slmbench.com with live leaderboard, 3+ CycleCore-trained models, and evaluation service offering.
@@ -58,7 +58,7 @@ CycleCore Technologies SLMBench is positioning to own the "practical edge AI eva
 - Use cases: Highly specialized, single-task models
 
 **Academic Plan**:
-- Paper A: Define MLM/NLM + introduce EdgeBench (target: arXiv by Week 6)
+- Paper A: Define MLM/NLM + introduce SLM-Bench (target: arXiv by Week 6)
 - Paper B: Distillation methods for MLMs (after training pipeline proven)
 - Paper C: NLM specialization (long-term, post-MVP)
 
@@ -75,13 +75,13 @@ CycleCore Technologies SLMBench is positioning to own the "practical edge AI eva
 ### Training Pipeline (Feedback Loop)
 
 ```
-1. Build EdgeBench task
+1. Build SLM-Bench benchmark
    ↓
 2. Generate synthetic training data (via teacher model)
    ↓
-3. Train CycleCore MLM on 4080 (24-48 hours)
+3. Train CycleCore Maaza model on 4080 (24-48 hours)
    ↓
-4. Evaluate on EdgeBench
+4. Evaluate on SLM-Bench
    ↓
 5. Refine benchmark based on results
    ↓
@@ -90,21 +90,21 @@ CycleCore Technologies SLMBench is positioning to own the "practical edge AI eva
 
 ### Model Roadmap
 
-**Week 1-2: CycleCore-MLM-135M-JSON**
+**Week 1-2: CycleCore Maaza SLM-135M-JSON**
 - Base: SmolLM2-135M (fine-tune) or distill from Qwen2.5-7B
 - Task: JSON extraction specialist
 - Size: ~250MB unquantized
 - Training time: 24-48 hours on 4080
 - Goal: Validate EdgeJSON benchmark
 
-**Week 2-3: CycleCore-MLM-60M-Intent**
+**Week 2-3: CycleCore Maaza NLM-60M-Intent**
 - Base: Distill from Llama 3.2-3B
 - Task: Intent classification (50-200 classes)
 - Size: ~120MB unquantized
 - Training time: 18-24 hours
 - Goal: Ultra-compact intent router
 
-**Week 3-4: CycleCore-MLM-120M-Balanced**
+**Week 3-4: CycleCore Maaza SLM-120M-Balanced**
 - Base: Distill from Qwen2.5-7B
 - Task: JSON + Intent (multi-task)
 - Size: ~240MB unquantized
@@ -112,7 +112,7 @@ CycleCore Technologies SLMBench is positioning to own the "practical edge AI eva
 - Goal: Balanced edge model
 
 **Post-MVP: CycleCore-NLM-5M-Filter**
-- Base: Distill from CycleCore-MLM-60M-Intent
+- Base: Distill from CycleCore Maaza NLM-60M-Intent
 - Task: Spam/PII filtering
 - Size: <10MB (heavy quantization)
 - Training time: 12-18 hours
@@ -124,9 +124,9 @@ CycleCore Technologies SLMBench is positioning to own the "practical edge AI eva
 CycleCore-{Category}-{Size}-{Specialty}
 
 Examples:
-- CycleCore-MLM-135M-JSON
-- CycleCore-MLM-60M-Intent
-- CycleCore-MLM-120M-Balanced
+- CycleCore Maaza SLM-135M-JSON
+- CycleCore Maaza NLM-60M-Intent
+- CycleCore Maaza SLM-120M-Balanced
 - CycleCore-NLM-5M-Filter
 ```
 
@@ -155,7 +155,7 @@ Examples:
 
 **Research**:
 - Digest GPT chat + ecosystem research
-- Draft Paper A outline (MLM/NLM definitions + EdgeBench)
+- Draft Paper A outline (MLM/NLM definitions + SLM-Bench)
 - Identify benchmark gaps
 
 **4080 Setup**:
@@ -176,7 +176,7 @@ Examples:
 - Metrics: JSONExact, FieldF1, SchemaCompliance
 
 **Model Training**:
-- Train CycleCore-MLM-135M-JSON on 4080
+- Train CycleCore Maaza SLM-135M-JSON on 4080
 - Baseline comparisons: SmolLM2-135M, Qwen2.5-0.5B
 - Publish to Hugging Face
 
@@ -195,7 +195,7 @@ Examples:
 - Metrics: Accuracy, latency, energy estimate
 
 **Model Training**:
-- Train CycleCore-MLM-60M-Intent on 4080
+- Train CycleCore Maaza NLM-60M-Intent on 4080
 - Compare against baselines
 
 **Leaderboard Launch**:
@@ -216,8 +216,8 @@ Examples:
 - Error recovery metrics
 
 **Model Training**:
-- Train CycleCore-MLM-120M-Balanced on 4080
-- Full EdgeBench evaluation
+- Train CycleCore Maaza SLM-120M-Balanced on 4080
+- Full SLM-Bench evaluation
 
 **Service Launch**:
 - Pricing page: $2.5K (basic), $5K (standard), $7.5K (premium)
@@ -226,7 +226,7 @@ Examples:
 - First outreach: 5-10 SLM developers
 
 **Paper A**:
-- Complete first draft (Intro, Related Work, MLM Spec, EdgeBench, Results)
+- Complete first draft (Intro, Related Work, MLM Spec, SLM-Bench, Results)
 - Target: arXiv submission Week 6
 
 **Deliverable**: Evaluation service offering, Paper A draft
@@ -248,9 +248,9 @@ Examples:
 - ✅ Evaluation harness (reproducible)
 
 **Models**:
-- ✅ CycleCore-MLM-135M-JSON trained & published
-- ✅ CycleCore-MLM-60M-Intent trained & published
-- ✅ CycleCore-MLM-120M-Balanced trained & published
+- ✅ CycleCore Maaza SLM-135M-JSON trained & published
+- ✅ CycleCore Maaza NLM-60M-Intent trained & published
+- ✅ CycleCore Maaza SLM-120M-Balanced trained & published
 
 **Academic**:
 - ✅ Paper A first draft complete
@@ -313,7 +313,7 @@ Examples:
 **Evaluation-as-a-Service**:
 - Basic: $2,500 (EdgeJSON only)
 - Standard: $5,000 (EdgeJSON + EdgeIntent)
-- Premium: $7,500 (Full EdgeBench + energy measurement)
+- Premium: $7,500 (Full SLM-Bench + energy measurement)
 
 **Target Market**:
 - SLM developers (Hugging Face community)

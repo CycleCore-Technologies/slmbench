@@ -12,9 +12,9 @@
 
 **Repository Structure**:
 ```
-CycleCore/CycleCore-MLM-135M-JSON
-CycleCore/CycleCore-MLM-60M-Intent
-CycleCore/CycleCore-MLM-120M-Balanced
+CycleCore/CycleCore Maaza SLM-135M-JSON
+CycleCore/CycleCore Maaza NLM-60M-Intent
+CycleCore/CycleCore Maaza SLM-120M-Balanced
 ```
 
 **Benefits**:
@@ -28,7 +28,7 @@ CycleCore/CycleCore-MLM-120M-Balanced
 - Tokenizer files
 - Model card (README.md)
 - Training configs
-- Evaluation results (EdgeBench scores)
+- Evaluation results (SLM-Bench scores)
 
 **License**: Apache 2.0 (commercial use allowed)
 
@@ -52,8 +52,8 @@ cyclecore/mlm-120m-balanced
 
 **Modelfile Example** (for Ollama):
 ```dockerfile
-# CycleCore-MLM-135M-JSON
-FROM ./CycleCore-MLM-135M-JSON.gguf
+# CycleCore Maaza SLM-135M-JSON
+FROM ./CycleCore Maaza SLM-135M-JSON.gguf
 
 TEMPLATE """Extract the following information as valid JSON:
 
@@ -91,7 +91,7 @@ SYSTEM """You are a specialized JSON extraction model. Output only valid JSON ma
 from optimum.onnxruntime import ORTModelForCausalLM
 
 model = ORTModelForCausalLM.from_pretrained(
-    "CycleCore/CycleCore-MLM-135M-JSON",
+    "CycleCore/CycleCore Maaza SLM-135M-JSON",
     export=True
 )
 model.save_pretrained("./onnx")
@@ -105,7 +105,7 @@ model.save_pretrained("./onnx")
 
 **Model Card Content** (Ollama-specific):
 - **Title**: "CycleCore MLM-135M-JSON - Edge JSON Extraction"
-- **Description**: "Micro Language Model (135M params) fine-tuned for JSON extraction on edge devices. Achieves 78.9% JSONExact on EdgeBench. Runs on Raspberry Pi, laptop, browser."
+- **Description**: "Micro Language Model (135M params) fine-tuned for JSON extraction on edge devices. Achieves 78.9% JSONExact on SLM-Bench. Runs on Raspberry Pi, laptop, browser."
 - **Tags**: `json`, `edge-ai`, `slm`, `mlm`, `structured-output`, `extraction`
 - **Use Cases**: IoT data parsing, API response handling, form extraction
 - **Example**:
@@ -132,7 +132,7 @@ model.save_pretrained("./onnx")
 
 ## Publishing Timeline
 
-### Week 2 (CycleCore-MLM-135M-JSON)
+### Week 2 (CycleCore Maaza SLM-135M-JSON)
 
 **Day 12-14**: Training complete
 **Day 14**:
@@ -147,17 +147,17 @@ model.save_pretrained("./onnx")
 - ✅ Publish to Ollama library
 
 **Day 16**:
-- ✅ Blog post: "Introducing CycleCore-MLM-135M-JSON"
+- ✅ Blog post: "Introducing CycleCore Maaza SLM-135M-JSON"
 - ✅ Social media (X/Twitter, LinkedIn)
 - ✅ HN/Reddit announcement
 
-### Week 3 (CycleCore-MLM-60M-Intent)
+### Week 3 (CycleCore Maaza NLM-60M-Intent)
 
 **Same process**, plus:
 - ✅ Add to leaderboard
 - ✅ Compare Ollama Q4 vs HF FP16 performance
 
-### Week 4 (CycleCore-MLM-120M-Balanced)
+### Week 4 (CycleCore Maaza SLM-120M-Balanced)
 
 **Same process**, plus:
 - ✅ Multi-task evaluation (JSON + Intent + FuncCall)
@@ -196,7 +196,7 @@ Micro Language Model (135M parameters) specialized for JSON extraction on edge d
 
 - **Developer**: CycleCore Technologies LLC
 - **Base Model**: SmolLM2-135M (fine-tuned)
-- **Training**: 11K JSON extraction examples (EdgeBench)
+- **Training**: 11K JSON extraction examples (SLM-Bench)
 - **License**: Apache 2.0
 - **Size**: 135M params (~70MB Q4, ~270MB FP16)
 
@@ -245,7 +245,7 @@ ollama run cyclecore/mlm-135m-json
 
 ## Links
 
-- [Hugging Face](https://huggingface.co/CycleCore/CycleCore-MLM-135M-JSON)
+- [Hugging Face](https://huggingface.co/CycleCore/CycleCore Maaza SLM-135M-JSON)
 - [Benchmark](https://slmbench.com/benchmarks#edgejson)
 - [Paper](https://arxiv.org/abs/...) (coming Week 6)
 - [GitHub](https://github.com/cyclecore/slmbench)
@@ -273,10 +273,10 @@ ollama run cyclecore/mlm-135m-json
 
 **Social Media**:
 ```
-🚀 Launching CycleCore-MLM-135M-JSON!
+🚀 Launching CycleCore Maaza SLM-135M-JSON!
 
 Micro Language Model for edge JSON extraction:
-- 78.9% accuracy on EdgeBench
+- 78.9% accuracy on SLM-Bench
 - Runs on Raspberry Pi
 - One command: ollama run cyclecore/mlm-135m-json
 
@@ -297,7 +297,7 @@ Micro Language Model for edge JSON extraction:
 - Update model cards with new results
 
 **Quarterly**:
-- Re-train with expanded EdgeBench dataset
+- Re-train with expanded SLM-Bench dataset
 - Publish v1.1, v1.2 (incremental improvements)
 - Track SEO performance ("cyclecore mlm" rankings)
 
@@ -305,4 +305,4 @@ Micro Language Model for edge JSON extraction:
 
 **Status**: STRATEGY DOCUMENTED - Ready for Week 2 execution
 **Owner**: CC-SLM
-**Next Action**: Train CycleCore-MLM-135M-JSON (Week 2), then publish to both platforms
+**Next Action**: Train CycleCore Maaza SLM-135M-JSON (Week 2), then publish to both platforms

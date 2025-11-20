@@ -1,6 +1,6 @@
-# Paper A: MLMs, NLMs, and EdgeBench - Outline
+# Paper A: MLMs, NLMs, and SLM-Bench - Outline
 
-**Working Title**: "Micro Language Models (MLMs) and EdgeBench: A Benchmark Suite for Structured Tasks on Resource-Constrained Devices"
+**Working Title**: "Micro Language Models (MLMs) and SLM-Bench: A Benchmark Suite for Structured Tasks on Resource-Constrained Devices"
 
 **Authors**: CycleCore Technologies Research Team
 **Target**: arXiv preprint → workshop submission (TinyML, MLSys, or ICLR/NeurIPS workshop)
@@ -14,7 +14,7 @@
 - **Problem**: Existing SLM benchmarks focus on academic tasks (MMLU, HellaSwag), missing practical edge deployment needs
 - **Gap**: Function calling, structured output (JSON), and cross-platform validation underserved
 - **Contribution 1**: Define MLM (Micro Language Models, 10M-250M params) and NLM (Nano Language Models, <10MB) categories
-- **Contribution 2**: Introduce EdgeBench suite (EdgeJSON, EdgeIntent, EdgeFuncCall)
+- **Contribution 2**: Introduce SLM-Bench suite (EdgeJSON, EdgeIntent, EdgeFuncCall)
 - **Contribution 3**: Baseline evaluation of 8+ SLMs across 3 hardware platforms
 - **Results**: Show that task-specialized MLMs can match or exceed larger SLMs on structured tasks while achieving 3-10x latency reduction
 - **Impact**: Practical benchmark for edge AI deployment, category definitions for future research
@@ -60,7 +60,7 @@
 - **MLM (Micro Language Model)**: 10M-250M params, structured task specialists
 - **NLM (Nano Language Model)**: <10MB footprint, ultra-specialized
 
-**2. EdgeBench Benchmark Suite**:
+**2. SLM-Bench Benchmark Suite**:
 - **EdgeJSON**: JSON extraction, schema compliance (1,000 test cases)
 - **EdgeIntent**: Intent classification, 50-200 classes (1,000 test cases)
 - **EdgeFuncCall**: Function calling, parameter extraction (500 test cases)
@@ -79,7 +79,7 @@
 
 - Section 2: Related Work
 - Section 3: MLM and NLM Definitions
-- Section 4: EdgeBench Design
+- Section 4: SLM-Bench Design
 - Section 5: Experimental Setup
 - Section 6: Results and Analysis
 - Section 7: Discussion and Limitations
@@ -116,7 +116,7 @@
 | MMLU      | ❌               | ❌                | ❌             | ❌     |
 | HellaSwag | ❌               | ❌                | ❌             | ❌     |
 | SLM-Bench | ❌               | Partial           | ✅             | ✅     |
-| **EdgeBench** | ✅           | ✅                | ✅             | (Future) |
+| **SLM-Bench** | ✅           | ✅                | ✅             | (Future) |
 
 ### 2.3 Distillation and Compression
 
@@ -217,7 +217,7 @@ NLMs (CycleCore-NLM-5M)
 
 ---
 
-## 4. EdgeBench Design (4-5 pages)
+## 4. SLM-Bench Design (4-5 pages)
 
 ### 4.1 Benchmark Philosophy
 
@@ -560,7 +560,7 @@ create_calendar_event(title: str, start: datetime, end: datetime,
 ### 7.3 Limitations
 
 **1. Synthetic Data Bias**:
-- EdgeBench uses synthetic data (teacher-generated)
+- SLM-Bench uses synthetic data (teacher-generated)
 - May not capture real-world complexity fully
 - **Mitigation**: Plan to add real-world datasets (Month 3+)
 
@@ -604,7 +604,7 @@ create_calendar_event(title: str, start: datetime, end: datetime,
 
 **Contributions**:
 1. **MLM and NLM Categories**: Formal definitions for ultra-small models
-2. **EdgeBench Suite**: Practical benchmarks (JSON, Intent, FuncCall)
+2. **SLM-Bench Suite**: Practical benchmarks (JSON, Intent, FuncCall)
 3. **Baseline Evaluation**: 11 models across 3 platforms
 4. **CycleCore MLMs**: 3 task-specialized models (60M-135M)
 
@@ -641,7 +641,7 @@ create_calendar_event(title: str, start: datetime, end: datetime,
 ### 8.3 Call to Action
 
 **For Researchers**:
-- Use EdgeBench to evaluate your SLMs
+- Use SLM-Bench to evaluate your SLMs
 - Submit models to CycleCore SLMBench leaderboard
 - Build on MLM/NLM definitions
 
@@ -659,7 +659,7 @@ create_calendar_event(title: str, start: datetime, end: datetime,
 
 ## Appendix (if needed)
 
-### A. EdgeBench Dataset Statistics
+### A. SLM-Bench Dataset Statistics
 ### B. Prompt Templates (Full List)
 ### C. Hyperparameter Details
 ### D. Additional Ablation Studies
@@ -688,7 +688,7 @@ create_calendar_event(title: str, start: datetime, end: datetime,
 
 **Week 1** (Current): Outline complete
 **Week 2**: Introduction + Related Work (draft)
-**Week 3**: MLM/NLM Definitions + EdgeBench Design (draft)
+**Week 3**: MLM/NLM Definitions + SLM-Bench Design (draft)
 **Week 4**: Experimental Setup (draft) + start Results
 **Week 5**: Results + Analysis (draft)
 **Week 6**: Discussion + Conclusion (draft), full paper review
