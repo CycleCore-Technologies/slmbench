@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Financial Transaction",
+  "description": "Bank or payment transaction record",
+  "type": "object",
+  "properties": {
+    "transaction_id": {
+      "type": "string",
+      "description": "Unique transaction ID"
+    },
+    "date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Transaction date and time"
+    },
+    "amount": {
+      "type": "number",
+      "description": "Transaction amount (positive or negative)"
+    },
+    "currency": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 3,
+      "description": "Currency code (USD, EUR, etc.)"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["debit", "credit", "transfer", "fee", "refund"],
+      "description": "Transaction type"
+    },
+    "description": {
+      "type": "string",
+      "description": "Transaction description"
+    },
+    "merchant_name": {
+      "type": "string",
+      "description": "Merchant or payee name"
+    },
+    "category": {
+      "type": "string",
+      "description": "Transaction category (groceries, utilities, etc.)"
+    },
+    "balance_after": {
+      "type": "number",
+      "description": "Account balance after transaction"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "completed", "failed", "reversed"]
+    }
+  },
+  "required": ["transaction_id", "date", "amount", "currency", "type"],
+  "additionalProperties": false
+}

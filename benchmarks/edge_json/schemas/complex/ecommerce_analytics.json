@@ -1,0 +1,164 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "E-Commerce Analytics",
+  "description": "Aggregated e-commerce analytics with sales, customer, and product data",
+  "type": "object",
+  "properties": {
+    "report_id": {
+      "type": "string"
+    },
+    "report_period": {
+      "type": "object",
+      "properties": {
+        "start_date": {"type": "string", "format": "date"},
+        "end_date": {"type": "string", "format": "date"},
+        "period_type": {"type": "string", "enum": ["daily", "weekly", "monthly", "quarterly", "yearly"]}
+      },
+      "required": ["start_date", "end_date"]
+    },
+    "sales_metrics": {
+      "type": "object",
+      "properties": {
+        "total_revenue": {"type": "number", "minimum": 0},
+        "total_orders": {"type": "integer", "minimum": 0},
+        "average_order_value": {"type": "number"},
+        "total_units_sold": {"type": "integer"},
+        "gross_profit": {"type": "number"},
+        "refunds_total": {"type": "number"},
+        "revenue_by_channel": {
+          "type": "object",
+          "properties": {
+            "website": {"type": "number"},
+            "mobile_app": {"type": "number"},
+            "marketplace": {"type": "number"},
+            "physical_store": {"type": "number"}
+          }
+        },
+        "conversion_rate": {"type": "number", "minimum": 0, "maximum": 100}
+      }
+    },
+    "customer_metrics": {
+      "type": "object",
+      "properties": {
+        "total_customers": {"type": "integer"},
+        "new_customers": {"type": "integer"},
+        "returning_customers": {"type": "integer"},
+        "customer_lifetime_value": {"type": "number"},
+        "churn_rate": {"type": "number", "minimum": 0, "maximum": 100},
+        "demographics": {
+          "type": "object",
+          "properties": {
+            "age_groups": {
+              "type": "object",
+              "properties": {
+                "18_24": {"type": "integer"},
+                "25_34": {"type": "integer"},
+                "35_44": {"type": "integer"},
+                "45_54": {"type": "integer"},
+                "55_plus": {"type": "integer"}
+              }
+            },
+            "top_regions": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "region": {"type": "string"},
+                  "customer_count": {"type": "integer"},
+                  "revenue": {"type": "number"}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "product_performance": {
+      "type": "object",
+      "properties": {
+        "top_selling_products": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "product_id": {"type": "string"},
+              "product_name": {"type": "string"},
+              "category": {"type": "string"},
+              "units_sold": {"type": "integer"},
+              "revenue": {"type": "number"},
+              "profit_margin": {"type": "number"},
+              "inventory_status": {
+                "type": "object",
+                "properties": {
+                  "current_stock": {"type": "integer"},
+                  "reorder_point": {"type": "integer"},
+                  "pending_orders": {"type": "integer"}
+                }
+              }
+            },
+            "required": ["product_id", "product_name", "units_sold", "revenue"]
+          }
+        },
+        "category_breakdown": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "category_name": {"type": "string"},
+              "revenue": {"type": "number"},
+              "units_sold": {"type": "integer"},
+              "percentage_of_total": {"type": "number"}
+            }
+          }
+        }
+      }
+    },
+    "marketing_metrics": {
+      "type": "object",
+      "properties": {
+        "ad_spend": {"type": "number"},
+        "roas": {"type": "number"},
+        "traffic_sources": {
+          "type": "object",
+          "properties": {
+            "organic": {"type": "integer"},
+            "paid_search": {"type": "integer"},
+            "social": {"type": "integer"},
+            "email": {"type": "integer"},
+            "direct": {"type": "integer"}
+          }
+        },
+        "campaign_performance": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "campaign_name": {"type": "string"},
+              "impressions": {"type": "integer"},
+              "clicks": {"type": "integer"},
+              "conversions": {"type": "integer"},
+              "cost": {"type": "number"},
+              "revenue_attributed": {"type": "number"}
+            }
+          }
+        }
+      }
+    },
+    "trends": {
+      "type": "object",
+      "properties": {
+        "revenue_growth_percentage": {"type": "number"},
+        "customer_growth_percentage": {"type": "number"},
+        "predictions": {
+          "type": "object",
+          "properties": {
+            "next_period_revenue": {"type": "number"},
+            "confidence_level": {"type": "number", "minimum": 0, "maximum": 100}
+          }
+        }
+      }
+    }
+  },
+  "required": ["report_id", "report_period", "sales_metrics"],
+  "additionalProperties": false
+}

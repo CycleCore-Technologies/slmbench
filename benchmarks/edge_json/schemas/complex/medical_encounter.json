@@ -1,0 +1,147 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Medical Encounter",
+  "description": "Complete patient medical visit with vitals, diagnoses, and treatment plan",
+  "type": "object",
+  "properties": {
+    "encounter_id": {
+      "type": "string"
+    },
+    "visit_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "facility": {
+      "type": "object",
+      "properties": {
+        "facility_name": {"type": "string"},
+        "facility_id": {"type": "string"},
+        "address": {
+          "type": "object",
+          "properties": {
+            "street": {"type": "string"},
+            "city": {"type": "string"},
+            "state": {"type": "string"},
+            "zip_code": {"type": "string"}
+          }
+        }
+      }
+    },
+    "patient": {
+      "type": "object",
+      "properties": {
+        "patient_id": {"type": "string"},
+        "name": {"type": "string"},
+        "date_of_birth": {"type": "string", "format": "date"},
+        "gender": {"type": "string", "enum": ["male", "female", "other", "prefer_not_to_say"]},
+        "medical_record_number": {"type": "string"},
+        "insurance": {
+          "type": "object",
+          "properties": {
+            "provider": {"type": "string"},
+            "policy_number": {"type": "string"},
+            "group_number": {"type": "string"}
+          }
+        }
+      },
+      "required": ["patient_id", "name", "date_of_birth"]
+    },
+    "provider": {
+      "type": "object",
+      "properties": {
+        "provider_id": {"type": "string"},
+        "name": {"type": "string"},
+        "specialty": {"type": "string"},
+        "license_number": {"type": "string"}
+      },
+      "required": ["provider_id", "name"]
+    },
+    "chief_complaint": {
+      "type": "string"
+    },
+    "vitals": {
+      "type": "object",
+      "properties": {
+        "blood_pressure_systolic": {"type": "number"},
+        "blood_pressure_diastolic": {"type": "number"},
+        "heart_rate": {"type": "number"},
+        "temperature": {"type": "number"},
+        "respiratory_rate": {"type": "number"},
+        "oxygen_saturation": {"type": "number"},
+        "height_cm": {"type": "number"},
+        "weight_kg": {"type": "number"},
+        "bmi": {"type": "number"}
+      }
+    },
+    "history_of_present_illness": {
+      "type": "string"
+    },
+    "physical_examination": {
+      "type": "string"
+    },
+    "lab_orders": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "test_name": {"type": "string"},
+          "test_code": {"type": "string"},
+          "priority": {"type": "string", "enum": ["routine", "urgent", "stat"]},
+          "ordered_timestamp": {"type": "string", "format": "date-time"}
+        }
+      }
+    },
+    "diagnoses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "icd10_code": {"type": "string"},
+          "diagnosis_name": {"type": "string"},
+          "diagnosis_type": {"type": "string", "enum": ["primary", "secondary", "differential"]},
+          "notes": {"type": "string"}
+        },
+        "required": ["icd10_code", "diagnosis_name"]
+      },
+      "minItems": 1
+    },
+    "medications": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "medication_name": {"type": "string"},
+          "dosage": {"type": "string"},
+          "frequency": {"type": "string"},
+          "duration": {"type": "string"},
+          "instructions": {"type": "string"},
+          "pharmacy": {
+            "type": "object",
+            "properties": {
+              "pharmacy_name": {"type": "string"},
+              "phone": {"type": "string"}
+            }
+          }
+        },
+        "required": ["medication_name", "dosage", "frequency"]
+      }
+    },
+    "follow_up": {
+      "type": "object",
+      "properties": {
+        "recommended_in_days": {"type": "integer"},
+        "instructions": {"type": "string"},
+        "specialist_referral": {
+          "type": "object",
+          "properties": {
+            "specialty": {"type": "string"},
+            "reason": {"type": "string"},
+            "urgency": {"type": "string", "enum": ["routine", "urgent"]}
+          }
+        }
+      }
+    }
+  },
+  "required": ["encounter_id", "visit_date", "patient", "provider", "chief_complaint", "diagnoses"],
+  "additionalProperties": false
+}

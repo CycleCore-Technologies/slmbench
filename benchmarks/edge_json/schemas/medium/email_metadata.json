@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Email Metadata",
+  "description": "Email headers and metadata",
+  "type": "object",
+  "properties": {
+    "message_id": {
+      "type": "string",
+      "description": "Unique message identifier"
+    },
+    "from": {
+      "type": "string",
+      "format": "email",
+      "description": "Sender email address"
+    },
+    "to": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "email"
+      },
+      "minItems": 1,
+      "description": "Recipient email addresses"
+    },
+    "cc": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "email"
+      },
+      "description": "CC recipients"
+    },
+    "subject": {
+      "type": "string",
+      "description": "Email subject line"
+    },
+    "date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When email was sent"
+    },
+    "attachments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "filename": {"type": "string"},
+          "size": {"type": "integer", "minimum": 0},
+          "content_type": {"type": "string"}
+        }
+      }
+    },
+    "is_read": {
+      "type": "boolean",
+      "description": "Whether email has been read"
+    }
+  },
+  "required": ["message_id", "from", "to", "subject", "date"],
+  "additionalProperties": false
+}

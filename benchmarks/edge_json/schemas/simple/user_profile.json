@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "User Profile",
+  "description": "Basic user profile information",
+  "type": "object",
+  "properties": {
+    "username": {
+      "type": "string",
+      "minLength": 3,
+      "description": "Unique username"
+    },
+    "age": {
+      "type": "integer",
+      "minimum": 13,
+      "maximum": 120,
+      "description": "User age"
+    },
+    "city": {
+      "type": "string",
+      "description": "City of residence"
+    },
+    "preferences": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "User preferences or interests"
+    }
+  },
+  "required": ["username", "age", "city"],
+  "additionalProperties": false
+}

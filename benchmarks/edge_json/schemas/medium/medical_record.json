@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Medical Lab Results",
+  "description": "Basic lab test results (anonymized)",
+  "type": "object",
+  "properties": {
+    "patient_id": {
+      "type": "string",
+      "description": "Anonymous patient identifier"
+    },
+    "test_type": {
+      "type": "string",
+      "description": "Type of lab test (e.g., CBC, CMP)"
+    },
+    "test_date": {
+      "type": "string",
+      "format": "date",
+      "description": "When test was performed"
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "parameter": {"type": "string"},
+          "value": {"type": "number"},
+          "unit": {"type": "string"},
+          "reference_range": {"type": "string"}
+        },
+        "required": ["parameter", "value", "unit"]
+      },
+      "minItems": 1,
+      "description": "Test results"
+    },
+    "ordering_physician": {
+      "type": "string",
+      "description": "Doctor who ordered the test"
+    },
+    "lab_name": {
+      "type": "string",
+      "description": "Laboratory facility"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "complete", "abnormal"],
+      "description": "Result status"
+    }
+  },
+  "required": ["patient_id", "test_type", "test_date", "results"],
+  "additionalProperties": false
+}

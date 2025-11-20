@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Event Registration",
+  "description": "Registration for an event with attendee details",
+  "type": "object",
+  "properties": {
+    "event_name": {
+      "type": "string",
+      "description": "Name of the event"
+    },
+    "event_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Event date and time"
+    },
+    "attendee_name": {
+      "type": "string",
+      "description": "Full name of attendee"
+    },
+    "attendee_email": {
+      "type": "string",
+      "format": "email",
+      "description": "Attendee email"
+    },
+    "ticket_type": {
+      "type": "string",
+      "enum": ["general", "vip", "student", "speaker"],
+      "description": "Type of ticket"
+    },
+    "dietary_requirements": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Dietary restrictions"
+    },
+    "emergency_contact": {
+      "type": "object",
+      "properties": {
+        "name": {"type": "string"},
+        "phone": {"type": "string"}
+      },
+      "required": ["name", "phone"]
+    },
+    "registration_date": {
+      "type": "string",
+      "format": "date",
+      "description": "When registration was made"
+    }
+  },
+  "required": ["event_name", "attendee_name", "attendee_email", "ticket_type"],
+  "additionalProperties": false
+}

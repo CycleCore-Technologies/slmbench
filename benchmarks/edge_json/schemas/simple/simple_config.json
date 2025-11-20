@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Application Configuration",
+  "description": "Simple app settings",
+  "type": "object",
+  "properties": {
+    "theme": {
+      "type": "string",
+      "enum": ["light", "dark", "auto"],
+      "description": "UI theme preference"
+    },
+    "language": {
+      "type": "string",
+      "description": "Language code (e.g., en, es, fr)"
+    },
+    "notifications_enabled": {
+      "type": "boolean",
+      "description": "Whether notifications are enabled"
+    },
+    "font_size": {
+      "type": "string",
+      "enum": ["small", "medium", "large"],
+      "description": "Text size preference"
+    }
+  },
+  "required": ["theme", "language"],
+  "additionalProperties": false
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Contact Information",
+  "description": "Basic contact details for a person",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Full name of the person"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "phone": {
+      "type": "string",
+      "pattern": "^[+]?[0-9\\-\\s()]+$",
+      "description": "Phone number"
+    }
+  },
+  "required": ["name", "email", "phone"],
+  "additionalProperties": false
+}

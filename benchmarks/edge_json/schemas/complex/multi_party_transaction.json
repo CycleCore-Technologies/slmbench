@@ -1,0 +1,105 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Multi-Party Transaction",
+  "description": "Complex financial transaction involving multiple parties and accounts",
+  "type": "object",
+  "properties": {
+    "transaction_id": {
+      "type": "string",
+      "description": "Unique transaction identifier"
+    },
+    "transaction_type": {
+      "type": "string",
+      "enum": ["escrow", "split_payment", "marketplace", "multi_currency"]
+    },
+    "initiation_timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "completion_timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "total_amount": {
+      "type": "number",
+      "minimum": 0
+    },
+    "currency": {
+      "type": "string"
+    },
+    "parties": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "party_id": {"type": "string"},
+          "party_type": {"type": "string", "enum": ["sender", "receiver", "intermediary", "platform"]},
+          "name": {"type": "string"},
+          "account": {
+            "type": "object",
+            "properties": {
+              "account_number": {"type": "string"},
+              "routing_number": {"type": "string"},
+              "bank_name": {"type": "string"},
+              "account_type": {"type": "string"}
+            }
+          },
+          "amount_involved": {"type": "number"},
+          "fees": {
+            "type": "object",
+            "properties": {
+              "processing_fee": {"type": "number"},
+              "platform_fee": {"type": "number"},
+              "total_fees": {"type": "number"}
+            }
+          }
+        },
+        "required": ["party_id", "party_type", "name"]
+      },
+      "minItems": 2
+    },
+    "payment_methods": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "method_type": {"type": "string", "enum": ["credit_card", "bank_transfer", "crypto", "wire"]},
+          "details": {"type": "object"},
+          "amount": {"type": "number"}
+        }
+      }
+    },
+    "status_history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "status": {"type": "string", "enum": ["initiated", "pending_approval", "processing", "completed", "failed", "reversed"]},
+          "timestamp": {"type": "string", "format": "date-time"},
+          "updated_by": {"type": "string"},
+          "notes": {"type": "string"}
+        }
+      }
+    },
+    "compliance": {
+      "type": "object",
+      "properties": {
+        "kyc_verified": {"type": "boolean"},
+        "aml_checked": {"type": "boolean"},
+        "regulatory_notes": {"type": "string"},
+        "jurisdiction": {"type": "string"}
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "purpose": {"type": "string"},
+        "reference_number": {"type": "string"},
+        "tags": {"type": "array", "items": {"type": "string"}},
+        "custom_fields": {"type": "object"}
+      }
+    }
+  },
+  "required": ["transaction_id", "transaction_type", "total_amount", "currency", "parties"],
+  "additionalProperties": false
+}

@@ -1,0 +1,154 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "IoT Device Network",
+  "description": "Connected IoT devices with relationships, telemetry, and automation rules",
+  "type": "object",
+  "properties": {
+    "network_id": {
+      "type": "string"
+    },
+    "network_name": {
+      "type": "string"
+    },
+    "location": {
+      "type": "object",
+      "properties": {
+        "building": {"type": "string"},
+        "floor": {"type": "string"},
+        "room": {"type": "string"},
+        "coordinates": {
+          "type": "object",
+          "properties": {
+            "latitude": {"type": "number"},
+            "longitude": {"type": "number"}
+          }
+        }
+      }
+    },
+    "devices": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "device_id": {"type": "string"},
+          "device_name": {"type": "string"},
+          "device_type": {"type": "string", "enum": ["sensor", "actuator", "controller", "gateway", "camera"]},
+          "manufacturer": {"type": "string"},
+          "model": {"type": "string"},
+          "firmware_version": {"type": "string"},
+          "status": {"type": "string", "enum": ["online", "offline", "error", "maintenance"]},
+          "last_seen": {"type": "string", "format": "date-time"},
+          "capabilities": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "current_state": {
+            "type": "object",
+            "properties": {
+              "power": {"type": "boolean"},
+              "battery_level": {"type": "number", "minimum": 0, "maximum": 100},
+              "signal_strength": {"type": "number"},
+              "readings": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            }
+          },
+          "configuration": {
+            "type": "object",
+            "properties": {
+              "polling_interval_seconds": {"type": "integer"},
+              "alert_thresholds": {"type": "object"},
+              "operating_mode": {"type": "string"}
+            }
+          },
+          "connections": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "connected_device_id": {"type": "string"},
+                "connection_type": {"type": "string", "enum": ["zigbee", "zwave", "wifi", "bluetooth", "ethernet"]},
+                "signal_quality": {"type": "number"}
+              }
+            }
+          }
+        },
+        "required": ["device_id", "device_name", "device_type", "status"]
+      },
+      "minItems": 1
+    },
+    "automation_rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "rule_id": {"type": "string"},
+          "rule_name": {"type": "string"},
+          "enabled": {"type": "boolean"},
+          "triggers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "device_id": {"type": "string"},
+                "condition_type": {"type": "string", "enum": ["value_threshold", "state_change", "time_based", "pattern_detection"]},
+                "condition_value": {},
+                "operator": {"type": "string", "enum": ["equals", "greater_than", "less_than", "between"]}
+              }
+            }
+          },
+          "actions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "target_device_id": {"type": "string"},
+                "action_type": {"type": "string"},
+                "action_parameters": {"type": "object"},
+                "delay_seconds": {"type": "integer"}
+              }
+            }
+          },
+          "priority": {"type": "integer"},
+          "last_triggered": {"type": "string", "format": "date-time"}
+        }
+      }
+    },
+    "telemetry_summary": {
+      "type": "object",
+      "properties": {
+        "reporting_period_hours": {"type": "integer"},
+        "total_data_points": {"type": "integer"},
+        "average_readings_per_device": {"type": "number"},
+        "anomalies_detected": {"type": "integer"},
+        "alerts_generated": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "alert_id": {"type": "string"},
+              "device_id": {"type": "string"},
+              "alert_type": {"type": "string"},
+              "severity": {"type": "string", "enum": ["low", "medium", "high", "critical"]},
+              "timestamp": {"type": "string", "format": "date-time"},
+              "resolved": {"type": "boolean"}
+            }
+          }
+        }
+      }
+    },
+    "network_health": {
+      "type": "object",
+      "properties": {
+        "overall_status": {"type": "string", "enum": ["healthy", "degraded", "critical"]},
+        "uptime_percentage": {"type": "number"},
+        "devices_online": {"type": "integer"},
+        "devices_offline": {"type": "integer"},
+        "last_health_check": {"type": "string", "format": "date-time"}
+      }
+    }
+  },
+  "required": ["network_id", "network_name", "devices"],
+  "additionalProperties": false
+}

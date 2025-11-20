@@ -1,0 +1,214 @@
+{
+  "test_examples": 158,
+  "valid_examples": 158,
+  "overall_pass_rate": 100.0,
+  "by_schema": {
+    "api_response": {
+      "total": 8,
+      "valid": 8,
+      "invalid": 0,
+      "pass_rate": 100.0,
+      "failure_reasons": {}
+    },
+    "contact_info": {
+      "total": 4,
+      "valid": 4,
+      "invalid": 0,
+      "pass_rate": 100.0,
+      "failure_reasons": {}
+    },
+    "ecommerce_analytics": {
+      "total": 5,
+      "valid": 5,
+      "invalid": 0,
+      "pass_rate": 100.0,
+      "failure_reasons": {}
+    },
+    "email_metadata": {
+      "total": 3,
+      "valid": 3,
+      "invalid": 0,
+      "pass_rate": 100.0,
+      "failure_reasons": {}
+    },
+    "invoice": {
+      "total": 5,
+      "valid": 5,
+      "invalid": 0,
+      "pass_rate": 100.0,
+      "failure_reasons": {}
+    },
+    "iot_device_network": {
+      "total": 7,
+      "valid": 7,
+      "invalid": 0,
+      "pass_rate": 100.0,
+      "failure_reasons": {}
+    },
+    "location": {
+      "total": 9,
+      "valid": 9,
+      "invalid": 0,
+      "pass_rate": 100.0,
+      "failure_reasons": {}
+    },
+    "log_entry": {
+      "total": 6,
+      "valid": 6,
+      "invalid": 0,
+      "pass_rate": 100.0,
+      "failure_reasons": {}
+    },
+    "medical_encounter": {
+      "total": 2,
+      "valid": 2,
+      "invalid": 0,
+      "pass_rate": 100.0,
+      "failure_reasons": {}
+    },
+    "medical_record": {
+      "total": 9,
+      "valid": 9,
+      "invalid": 0,
+      "pass_rate": 100.0,
+      "failure_reasons": {}
+    },
+    "meeting_notes": {
+      "total": 2,
+      "valid": 2,
+      "invalid": 0,
+      "pass_rate": 100.0,
+      "failure_reasons": {}
+    },
+    "multi_party_transaction": {
+      "total": 9,
+      "valid": 9,
+      "invalid": 0,
+      "pass_rate": 100.0,
+      "failure_reasons": {}
+    },
+    "nested_organization": {
+      "total": 2,
+      "valid": 2,
+      "invalid": 0,
+      "pass_rate": 100.0,
+      "failure_reasons": {}
+    },
+    "notification": {
+      "total": 9,
+      "valid": 9,
+      "invalid": 0,
+      "pass_rate": 100.0,
+      "failure_reasons": {}
+    },
+    "order_details": {
+      "total": 6,
+      "valid": 6,
+      "invalid": 0,
+      "pass_rate": 100.0,
+      "failure_reasons": {}
+    },
+    "product_info": {
+      "total": 6,
+      "valid": 6,
+      "invalid": 0,
+      "pass_rate": 100.0,
+      "failure_reasons": {}
+    },
+    "rating": {
+      "total": 7,
+      "valid": 7,
+      "invalid": 0,
+      "pass_rate": 100.0,
+      "failure_reasons": {}
+    },
+    "sensor_reading": {
+      "total": 8,
+      "valid": 8,
+      "invalid": 0,
+      "pass_rate": 100.0,
+      "failure_reasons": {}
+    },
+    "shopping_cart": {
+      "total": 9,
+      "valid": 9,
+      "invalid": 0,
+      "pass_rate": 100.0,
+      "failure_reasons": {}
+    },
+    "simple_config": {
+      "total": 8,
+      "valid": 8,
+      "invalid": 0,
+      "pass_rate": 100.0,
+      "failure_reasons": {}
+    },
+    "support_ticket": {
+      "total": 8,
+      "valid": 8,
+      "invalid": 0,
+      "pass_rate": 100.0,
+      "failure_reasons": {}
+    },
+    "tag_list": {
+      "total": 10,
+      "valid": 10,
+      "invalid": 0,
+      "pass_rate": 100.0,
+      "failure_reasons": {}
+    },
+    "transaction_record": {
+      "total": 7,
+      "valid": 7,
+      "invalid": 0,
+      "pass_rate": 100.0,
+      "failure_reasons": {}
+    },
+    "user_profile": {
+      "total": 9,
+      "valid": 9,
+      "invalid": 0,
+      "pass_rate": 100.0,
+      "failure_reasons": {}
+    }
+  },
+  "by_complexity": {
+    "simple": {
+      "total": 76,
+      "valid": 76,
+      "invalid": 0,
+      "pass_rate": 100.0,
+      "failure_reasons": {}
+    },
+    "medium": {
+      "total": 57,
+      "valid": 57,
+      "invalid": 0,
+      "pass_rate": 100.0,
+      "failure_reasons": {}
+    },
+    "complex": {
+      "total": 25,
+      "valid": 25,
+      "invalid": 0,
+      "pass_rate": 100.0,
+      "failure_reasons": {}
+    }
+  },
+  "by_source": {
+    "template": {
+      "total": 124,
+      "valid": 124,
+      "invalid": 0,
+      "pass_rate": 100.0,
+      "failure_reasons": {}
+    },
+    "llm": {
+      "total": 34,
+      "valid": 34,
+      "invalid": 0,
+      "pass_rate": 100.0,
+      "failure_reasons": {}
+    }
+  }
+}

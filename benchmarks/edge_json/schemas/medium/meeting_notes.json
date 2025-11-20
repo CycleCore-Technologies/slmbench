@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Meeting Notes",
+  "description": "Calendar meeting with notes and attendees",
+  "type": "object",
+  "properties": {
+    "meeting_title": {
+      "type": "string",
+      "description": "Meeting title or topic"
+    },
+    "date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Meeting date and time"
+    },
+    "duration_minutes": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Meeting duration in minutes"
+    },
+    "attendees": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string"},
+          "email": {"type": "string", "format": "email"},
+          "role": {"type": "string"}
+        },
+        "required": ["name", "email"]
+      },
+      "minItems": 1
+    },
+    "notes": {
+      "type": "string",
+      "description": "Meeting notes or minutes"
+    },
+    "action_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "task": {"type": "string"},
+          "assigned_to": {"type": "string"},
+          "due_date": {"type": "string", "format": "date"}
+        }
+      }
+    },
+    "location": {
+      "type": "string",
+      "description": "Meeting location or video link"
+    }
+  },
+  "required": ["meeting_title", "date", "attendees"],
+  "additionalProperties": false
+}

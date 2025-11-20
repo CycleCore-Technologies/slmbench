@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Product/Service Rating",
+  "description": "User rating and review",
+  "type": "object",
+  "properties": {
+    "rating": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Star rating (1-5)"
+    },
+    "review_text": {
+      "type": "string",
+      "description": "Review content"
+    },
+    "reviewer_name": {
+      "type": "string",
+      "description": "Name of reviewer"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Review date"
+    }
+  },
+  "required": ["rating", "reviewer_name"],
+  "additionalProperties": false
+}

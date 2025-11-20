@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Application Log Entry",
+  "description": "Structured application log message",
+  "type": "object",
+  "properties": {
+    "level": {
+      "type": "string",
+      "enum": ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"],
+      "description": "Log level"
+    },
+    "message": {
+      "type": "string",
+      "description": "Log message content"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the log was created"
+    },
+    "source": {
+      "type": "string",
+      "description": "Source module or service"
+    }
+  },
+  "required": ["level", "message", "timestamp"],
+  "additionalProperties": false
+}

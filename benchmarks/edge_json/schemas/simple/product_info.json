@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Product Information",
+  "description": "Basic product details for e-commerce",
+  "type": "object",
+  "properties": {
+    "product_name": {
+      "type": "string",
+      "description": "Name of the product"
+    },
+    "sku": {
+      "type": "string",
+      "description": "Stock keeping unit identifier"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Price in USD"
+    },
+    "quantity": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Quantity in stock"
+    },
+    "category": {
+      "type": "string",
+      "description": "Product category"
+    }
+  },
+  "required": ["product_name", "price", "quantity"],
+  "additionalProperties": false
+}

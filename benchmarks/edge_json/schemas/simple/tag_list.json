@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Tag List",
+  "description": "Categorization tags for content",
+  "type": "object",
+  "properties": {
+    "item_id": {
+      "type": "string",
+      "description": "Item being tagged"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "description": "List of tags"
+    },
+    "created_by": {
+      "type": "string",
+      "description": "User who created tags"
+    }
+  },
+  "required": ["item_id", "tags"],
+  "additionalProperties": false
+}

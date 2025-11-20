@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Customer Support Ticket",
+  "description": "Support ticket with history and status",
+  "type": "object",
+  "properties": {
+    "ticket_id": {
+      "type": "string",
+      "description": "Unique ticket identifier"
+    },
+    "customer_name": {
+      "type": "string",
+      "description": "Customer name"
+    },
+    "customer_email": {
+      "type": "string",
+      "format": "email"
+    },
+    "subject": {
+      "type": "string",
+      "description": "Ticket subject"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed issue description"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["technical", "billing", "account", "feature_request", "bug"],
+      "description": "Issue category"
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "urgent"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["open", "in_progress", "waiting_customer", "resolved", "closed"]
+    },
+    "assigned_to": {
+      "type": "string",
+      "description": "Support agent assigned"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["ticket_id", "customer_name", "customer_email", "subject", "category", "priority", "status"],
+  "additionalProperties": false
+}

@@ -535,3 +535,38 @@ And a legitimacy bump for both CycleCore and the eventual commercial tools (Lexo
 
 If you want, I can next start drafting Paper A’s skeleton (section headings + bullet points + initial paragraph seeds) so you can slot data and details in as you build.
 
+
+---
+
+## Phase 3: EdgeJSON Dataset Expansion - COMPLETED
+
+**Date**: 2025-11-20  
+**Status**: ✅ COMPLETE  
+**Agent**: CC-SLM
+
+Successfully expanded EdgeJSON dataset to **787 high-quality examples** (from 100):
+- 629 train / 158 test (80/20 split)
+- 25 schemas across 3 complexity levels
+- 100% test set validity (baseline evaluation)
+- 52% generation pass rate (rigorous quality filtering)
+
+**Architecture**: Hybrid template (Faker) + LLM (Qwen2.5-14B-AWQ) generation with multi-level quality validation
+
+**Key Components**:
+- SchemaLoader: Auto-discovers 25 JSON schemas
+- TemplateGenerator: Faker-based synthetic data
+- TeacherRouter: Keyword-based model routing (Qwen-only due to VRAM)
+- VLLMGenerator: vLLM batched inference wrapper
+- QualityValidator: 5-level validation pipeline
+- DatasetGenerator: Main orchestrator
+
+**Challenges Resolved**:
+1. CUDA OOM errors → GPU cleanup + optimized vLLM settings
+2. Teacher committee VRAM constraints → Qwen-only pipeline
+3. Python multiprocessing → Proper main guard
+
+**Performance**: 600 tokens/sec output, 12.25GB VRAM (4080 SUPER 16GB)
+
+**Next**: Phase 4 - Model Training & Evaluation
+
+See: `benchmarks/edge_json/PHASE3_SUMMARY.md` for full details

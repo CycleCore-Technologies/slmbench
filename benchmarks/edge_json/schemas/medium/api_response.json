@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "REST API Response",
+  "description": "Standard API response with data and metadata",
+  "type": "object",
+  "properties": {
+    "status_code": {
+      "type": "integer",
+      "minimum": 100,
+      "maximum": 599,
+      "description": "HTTP status code"
+    },
+    "message": {
+      "type": "string",
+      "description": "Human-readable message"
+    },
+    "data": {
+      "type": "object",
+      "description": "Response data payload"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "request_id": {"type": "string"},
+        "timestamp": {"type": "string", "format": "date-time"},
+        "version": {"type": "string"}
+      }
+    },
+    "pagination": {
+      "type": "object",
+      "properties": {
+        "page": {"type": "integer", "minimum": 1},
+        "per_page": {"type": "integer", "minimum": 1},
+        "total": {"type": "integer", "minimum": 0}
+      }
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "field": {"type": "string"},
+          "message": {"type": "string"}
+        }
+      }
+    }
+  },
+  "required": ["status_code", "message"],
+  "additionalProperties": false
+}

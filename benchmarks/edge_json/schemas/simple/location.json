@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GPS Location",
+  "description": "Geographic location with coordinates",
+  "type": "object",
+  "properties": {
+    "latitude": {
+      "type": "number",
+      "minimum": -90,
+      "maximum": 90,
+      "description": "Latitude coordinate"
+    },
+    "longitude": {
+      "type": "number",
+      "minimum": -180,
+      "maximum": 180,
+      "description": "Longitude coordinate"
+    },
+    "address": {
+      "type": "string",
+      "description": "Human-readable address"
+    },
+    "timezone": {
+      "type": "string",
+      "description": "Timezone identifier (e.g., America/New_York)"
+    }
+  },
+  "required": ["latitude", "longitude"],
+  "additionalProperties": false
+}
