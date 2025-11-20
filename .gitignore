@@ -85,3 +85,5 @@ energy_logs/
 *.key
 *.pem
 credentials.json
+unsloth_compiled_cache/
+**/dataset/
