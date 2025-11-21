@@ -114,7 +114,7 @@
                     <tbody>
                         <tr class="gold-medal">
                             <td>🥇 1</td>
-                            <td><a href="https://huggingface.co/CycleCoreTechnologies/Maaza-SLM-360M-JSON-v1" target="_blank"><strong>Maaza SLM-360M-JSON v1</strong></a></td>
+                            <td><a href="https://huggingface.co/CycleCoreTechnologies/Maaza-SLM-360M-JSON-v1" target="_blank"><strong>Maaza SLM-360M-JSON v1</strong></a> <span class="cct-badge">CCT✓</span></td>
                             <td>360M</td>
                             <td><strong>55.1%</strong></td>
                             <td>0.780</td>
@@ -123,7 +123,7 @@
                         </tr>
                         <tr class="silver-medal">
                             <td>🥈 2</td>
-                            <td><a href="https://huggingface.co/CycleCoreTechnologies/Maaza-MLM-135M-JSON-v1" target="_blank"><strong>Maaza MLM-135M-JSON v1</strong></a></td>
+                            <td><a href="https://huggingface.co/CycleCoreTechnologies/Maaza-MLM-135M-JSON-v1" target="_blank"><strong>Maaza MLM-135M-JSON v1</strong></a> <span class="cct-badge">CCT✓</span></td>
                             <td>135M</td>
                             <td><strong>24.7%</strong></td>
                             <td>0.520</td>
@@ -176,7 +176,7 @@
                     <h3 class="tier-name">Single Verification</h3>
                     <div class="tier-price">$20</div>
                     <ul class="tier-features">
-                        <li>✅ Verified badge on leaderboard</li>
+                        <li><span class="cct-badge">CCT✓</span> Verified badge on leaderboard</li>
                         <li>Official certificate (PDF)</li>
                         <li>Detailed evaluation report</li>
                         <li>48-hour turnaround</li>
@@ -545,6 +545,18 @@
 
         .leaderboard-notes p:last-child {
             margin-bottom: 0;
+        }
+
+        /* CCT Verified Badge */
+        .cct-badge {
+            display: inline-block;
+            background: var(--cc-accent-cyan);
+            color: var(--cc-black);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: var(--cc-weight-bold);
+            font-size: var(--cc-text-sm);
+            margin-right: 4px;
         }
 
         /* Evaluation Service */
