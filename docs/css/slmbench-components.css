@@ -171,10 +171,11 @@
 }
 
 .btn-primary:hover {
-  background: var(--cc-accent-cyan-dark);
-  border-color: var(--cc-accent-cyan-dark);
+  background: var(--cc-text-primary);
+  color: var(--cc-black);
+  border-color: var(--cc-text-primary);
   transform: translateY(-2px);
-  box-shadow: var(--cc-glow-md);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
 }
 
 /* Secondary Button */
