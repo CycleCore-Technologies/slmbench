@@ -92,20 +92,74 @@
         </div>
     </section>
 
-    <!-- Leaderboard Preview (Coming Soon) -->
+    <!-- EdgeJSON Leaderboard -->
     <section class="leaderboard-preview" id="leaderboard">
         <div class="container">
-            <h2 class="section-title">SLM-Bench Leaderboard</h2>
-            <p class="section-subtitle">Launching Soon</p>
-            <div class="coming-soon-box">
-                <p>We're currently running baseline evaluations on EdgeJSON, EdgeIntent, and EdgeFuncCall tasks.</p>
-                <p>The leaderboard will launch with results from 10+ models including:</p>
-                <ul class="model-list">
-                    <li>SmolLM2 (135M, 360M, 1.7B)</li>
-                    <li>Qwen2.5 (0.5B, 1.5B)</li>
-                    <li>Llama 3.2 (1B, 3B)</li>
-                    <li>CycleCore-MLM Series (60M, 120M, 135M)</li>
-                </ul>
+            <h2 class="section-title">EdgeJSON Benchmark Leaderboard</h2>
+            <p class="section-subtitle">Real-world structured JSON extraction performance</p>
+
+            <div class="leaderboard-table">
+                <table class="benchmark-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Model</th>
+                            <th>Size</th>
+                            <th>JSONExact</th>
+                            <th>Field F1</th>
+                            <th>Hardware</th>
+                            <th>License</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="gold-medal">
+                            <td>🥇 1</td>
+                            <td><a href="https://huggingface.co/CycleCoreTechnologies/Maaza-SLM-360M-JSON-v1" target="_blank"><strong>Maaza SLM-360M-JSON v1</strong></a></td>
+                            <td>360M</td>
+                            <td><strong>55.1%</strong></td>
+                            <td>0.780</td>
+                            <td>Laptop, Pi 5</td>
+                            <td>Apache 2.0</td>
+                        </tr>
+                        <tr class="silver-medal">
+                            <td>🥈 2</td>
+                            <td><a href="https://huggingface.co/CycleCoreTechnologies/Maaza-MLM-135M-JSON-v1" target="_blank"><strong>Maaza MLM-135M-JSON v1</strong></a></td>
+                            <td>135M</td>
+                            <td><strong>24.7%</strong></td>
+                            <td>0.520</td>
+                            <td>Pi 5, Browser</td>
+                            <td>Apache 2.0</td>
+                        </tr>
+                        <tr>
+                            <td>🥉 3</td>
+                            <td>SmolLM2-360M (base)</td>
+                            <td>360M</td>
+                            <td>~5%</td>
+                            <td>~0.15</td>
+                            <td>Laptop</td>
+                            <td>Apache 2.0</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>SmolLM2-135M (base)</td>
+                            <td>135M</td>
+                            <td>1.9%</td>
+                            <td>0.024</td>
+                            <td>Pi 5, Browser</td>
+                            <td>Apache 2.0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="leaderboard-notes">
+                <p><strong>Metrics:</strong> JSONExact = exact JSON match accuracy (primary metric) • Field F1 = per-field precision/recall • All models evaluated on EdgeJSON v3 (158 test cases, 25 schemas)</p>
+                <p><strong>Performance by Complexity:</strong> Simple (2-4 fields) • Medium (5-8 fields) • Complex (8+ fields)</p>
+            </div>
+
+            <div class="cta-box" style="margin-top: var(--cc-space-lg);">
+                <p>Have a model to evaluate? Submit it to the leaderboard.</p>
+                <a href="#evaluation" class="btn btn-primary">Request Evaluation</a>
             </div>
         </div>
     </section>
@@ -160,7 +214,7 @@
 
             <div class="cta-box">
                 <p>Interested in getting your model evaluated?</p>
-                <a href="mailto:hello@slmbench.com" class="btn btn-primary">Contact Us</a>
+                <a href="mailto:hi@cyclecore.ai" class="btn btn-primary">Contact Us</a>
             </div>
         </div>
     </section>
@@ -202,7 +256,7 @@
                         <ul>
                             <li><a href="/about">About</a></li>
                             <li><a href="https://cyclecore.ai">CycleCore.ai</a></li>
-                            <li><a href="mailto:hello@slmbench.com">Contact</a></li>
+                            <li><a href="mailto:hi@cyclecore.ai">Contact</a></li>
                         </ul>
                     </div>
                 </div>
@@ -425,6 +479,72 @@
         .model-list {
             color: var(--cc-text-secondary);
             line-height: var(--cc-leading-relaxed);
+        }
+
+        /* Leaderboard Table */
+        .leaderboard-table {
+            overflow-x: auto;
+            margin-bottom: var(--cc-space-lg);
+        }
+
+        .benchmark-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--cc-gray-900);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .benchmark-table th {
+            background: var(--cc-gray-800);
+            color: var(--cc-text-primary);
+            font-weight: var(--cc-weight-semibold);
+            padding: var(--cc-space-md);
+            text-align: left;
+            border-bottom: 1px solid var(--cc-gray-700);
+        }
+
+        .benchmark-table td {
+            padding: var(--cc-space-md);
+            color: var(--cc-text-secondary);
+            border-bottom: 1px solid var(--cc-gray-800);
+        }
+
+        .benchmark-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .benchmark-table a {
+            color: var(--cc-accent-cyan);
+            text-decoration: none;
+        }
+
+        .benchmark-table a:hover {
+            text-decoration: underline;
+        }
+
+        .gold-medal td:first-child,
+        .silver-medal td:first-child {
+            font-size: var(--cc-text-lg);
+        }
+
+        .leaderboard-notes {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: var(--cc-space-md);
+            background: var(--cc-gray-800);
+            border-radius: 8px;
+            color: var(--cc-text-secondary);
+            font-size: var(--cc-text-sm);
+            line-height: var(--cc-leading-relaxed);
+        }
+
+        .leaderboard-notes p {
+            margin-bottom: var(--cc-space-xs);
+        }
+
+        .leaderboard-notes p:last-child {
+            margin-bottom: 0;
         }
 
         /* Evaluation Service */
