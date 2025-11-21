@@ -43,7 +43,7 @@
 ### Footer
 
 - **CycleCore Technologies LLC** (logo/branding)
-- Links: [About](/about) | [Blog](/blog) | [GitHub](https://github.com/cyclecore) | [Contact](mailto:hello@cyclecore.ai)
+- Links: [About](/about) | [Blog](/blog) | [GitHub](https://github.com/cyclecore) | [Contact](mailto:hi@cyclecore.ai)
 - Social: Twitter/X, LinkedIn
 - © 2025 CycleCore Technologies LLC
 
