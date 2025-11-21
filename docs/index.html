@@ -3,73 +3,595 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SLM-Bench - Coming Soon">
-    <title>SLM-Bench - Coming Soon</title>
+    <meta name="description" content="SLM-Bench - Practical benchmarks for Small Language Models deployed at the edge. EdgeJSON, EdgeIntent, EdgeFuncCall evaluation suite by CycleCore Technologies.">
+    <meta name="keywords" content="Small Language Models, SLM benchmarks, Edge AI, MLM, NLM, JSON extraction, intent classification, function calling">
+    <title>CycleCore Technologies SLMBench - Edge Pack</title>
+
+    <!-- CycleCore Design System -->
+    <link rel="stylesheet" href="../static/css/slmbench-tokens.css">
+    <link rel="stylesheet" href="../static/css/slmbench-base.css">
+    <link rel="stylesheet" href="../static/css/slmbench-components.css">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header / Navigation -->
+    <header class="site-header">
+        <div class="container">
+            <nav class="nav">
+                <div class="nav-brand">
+                    <span class="logo">🧪</span>
+                    <span class="brand-text">SLMBench</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#benchmarks">Benchmarks</a></li>
+                    <li><a href="#leaderboard">Leaderboard</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="#evaluation" class="btn-accent">Request Evaluation</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="gradient-text">SLM-Bench</span>
+                </h1>
+                <p class="hero-subtitle">Production-Grade Edge AI Evaluation</p>
+                <p class="hero-description">
+                    Independent benchmarking for Small Language Models deployed at the edge. We evaluate what matters for production: function calling, structured extraction, and intent classification across real-world hardware platforms.
+                </p>
+                <div class="hero-ctas">
+                    <a href="#leaderboard" class="btn btn-primary">View Leaderboard</a>
+                    <a href="#evaluation" class="btn btn-secondary">Request Evaluation</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Grid -->
+    <section class="features" id="benchmarks">
+        <div class="container">
+            <div class="feature-grid">
+                <!-- Feature 1: Production-Ready Benchmarks -->
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Production-Ready Benchmarks</h3>
+                    <p class="feature-description">
+                        EdgeJSON for structured extraction, EdgeIntent for classification, EdgeFuncCall for tool use. Evaluate models on tasks that reflect real-world deployment requirements.
+                    </p>
+                    <a href="/benchmarks" class="feature-link">Explore benchmarks →</a>
+                </div>
+
+                <!-- Feature 2: Independent Rankings -->
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3 class="feature-title">Independent Rankings</h3>
+                    <p class="feature-description">
+                        Compare leading SLMs across standardized tasks. Open methodology, reproducible results, no pay-to-play rankings. Transparency by design.
+                    </p>
+                    <a href="/leaderboard" class="feature-link">View leaderboard →</a>
+                </div>
+
+                <!-- Feature 3: Professional Evaluation Service -->
+                <div class="feature-card">
+                    <div class="feature-icon">🔬</div>
+                    <h3 class="feature-title">Evaluation Service</h3>
+                    <p class="feature-description">
+                        Independent testing for your SLM. Comprehensive reports with energy measurement, cross-platform validation, and competitive benchmarking.
+                    </p>
+                    <a href="/evaluation" class="feature-link">Request evaluation →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leaderboard Preview (Coming Soon) -->
+    <section class="leaderboard-preview" id="leaderboard">
+        <div class="container">
+            <h2 class="section-title">SLM-Bench Leaderboard</h2>
+            <p class="section-subtitle">Launching Soon</p>
+            <div class="coming-soon-box">
+                <p>We're currently running baseline evaluations on EdgeJSON, EdgeIntent, and EdgeFuncCall tasks.</p>
+                <p>The leaderboard will launch with results from 10+ models including:</p>
+                <ul class="model-list">
+                    <li>SmolLM2 (135M, 360M, 1.7B)</li>
+                    <li>Qwen2.5 (0.5B, 1.5B)</li>
+                    <li>Llama 3.2 (1B, 3B)</li>
+                    <li>CycleCore-MLM Series (60M, 120M, 135M)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Evaluation Service -->
+    <section class="evaluation-service" id="evaluation">
+        <div class="container">
+            <h2 class="section-title">Professional SLM Evaluation</h2>
+            <p class="section-subtitle">Independent, rigorous, transparent</p>
+
+            <div class="pricing-grid">
+                <!-- Basic Tier -->
+                <div class="pricing-card">
+                    <h3 class="tier-name">Basic</h3>
+                    <div class="tier-price">$2,500</div>
+                    <ul class="tier-features">
+                        <li>EdgeJSON benchmark (1,000 test cases)</li>
+                        <li>Baseline comparisons (vs 3 models)</li>
+                        <li>Latency measurement (1 platform)</li>
+                        <li>PDF report + leaderboard placement</li>
+                    </ul>
+                </div>
+
+                <!-- Standard Tier -->
+                <div class="pricing-card pricing-card-featured">
+                    <div class="tier-badge">Most Popular</div>
+                    <h3 class="tier-name">Standard</h3>
+                    <div class="tier-price">$5,000</div>
+                    <ul class="tier-features">
+                        <li>EdgeJSON + EdgeIntent benchmarks</li>
+                        <li>Baseline comparisons (vs 5 models)</li>
+                        <li>Cross-platform (laptop + Pi 5)</li>
+                        <li>PDF report + leaderboard</li>
+                        <li>1-hour consultation</li>
+                    </ul>
+                </div>
+
+                <!-- Premium Tier -->
+                <div class="pricing-card">
+                    <h3 class="tier-name">Premium</h3>
+                    <div class="tier-price">$7,500</div>
+                    <ul class="tier-features">
+                        <li>Full Edge Pack suite (all 3 tasks)</li>
+                        <li>Baseline comparisons (vs 8 models)</li>
+                        <li>Cross-platform (laptop + Pi 5 + browser)</li>
+                        <li>Energy measurement (Joulescope)</li>
+                        <li>Detailed PDF report + leaderboard</li>
+                        <li>2-hour consultation + custom metrics</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cta-box">
+                <p>Interested in getting your model evaluated?</p>
+                <a href="mailto:hello@slmbench.com" class="btn btn-primary">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="brand-logo">
+                        <span class="logo">🧪</span>
+                        <span class="brand-text">SLMBench</span>
+                    </div>
+                    <p class="footer-tagline">CycleCore Technologies LLC</p>
+                    <p class="footer-tagline-sub">Practical Edge AI Evaluation</p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Benchmarks</h4>
+                        <ul>
+                            <li><a href="/benchmarks#edgejson">EdgeJSON</a></li>
+                            <li><a href="/benchmarks#edgeintent">EdgeIntent</a></li>
+                            <li><a href="/benchmarks#edgefunccall">EdgeFuncCall</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="/leaderboard">Leaderboard</a></li>
+                            <li><a href="/blog">Blog</a></li>
+                            <li><a href="https://github.com/cyclecore/slmbench">GitHub</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="/about">About</a></li>
+                            <li><a href="https://cyclecore.ai">CycleCore.ai</a></li>
+                            <li><a href="mailto:hello@slmbench.com">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 CycleCore Technologies LLC. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="https://twitter.com/CycleCoreTech">Twitter/X</a>
+                    <a href="https://linkedin.com/company/cyclecore">LinkedIn</a>
+                    <a href="https://github.com/cyclecore">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <style>
-        * {
+        /* Additional page-specific styles */
+        body {
+            font-family: var(--cc-font-display);
+            background: var(--cc-black);
+            color: var(--cc-text-primary);
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #0a0a0a;
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
         }
 
         .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--cc-space-md);
+        }
+
+        /* Header */
+        .site-header {
+            padding: var(--cc-space-md) 0;
+            border-bottom: 1px solid var(--cc-gray-700);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: var(--cc-space-xs);
+        }
+
+        .logo {
+            font-size: var(--cc-text-2xl);
+        }
+
+        .brand-text {
+            font-size: var(--cc-text-xl);
+            font-weight: var(--cc-weight-bold);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: var(--cc-space-md);
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu a {
+            color: var(--cc-text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--cc-accent-cyan);
+        }
+
+        /* Hero */
+        .hero {
+            padding: var(--cc-space-xl) 0;
             text-align: center;
-            max-width: 600px;
         }
 
-        .spinner {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 2rem;
-            border: 3px solid rgba(0, 212, 255, 0.1);
-            border-top-color: #00d4ff;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
+        .hero-title {
+            font-size: var(--cc-text-hero);
+            font-weight: var(--cc-weight-black);
+            line-height: var(--cc-leading-tight);
+            margin-bottom: var(--cc-space-sm);
         }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        h1 {
-            font-size: 3rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+        .gradient-text {
+            background: var(--cc-gradient-text);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 1rem;
         }
 
-        p {
-            font-size: 1.125rem;
-            color: #a0a0a0;
-            line-height: 1.6;
+        .hero-subtitle {
+            font-size: var(--cc-text-xl);
+            color: var(--cc-text-secondary);
+            margin-bottom: var(--cc-space-md);
+        }
+
+        .hero-description {
+            font-size: var(--cc-text-lg);
+            color: var(--cc-text-secondary);
+            max-width: 800px;
+            margin: 0 auto var(--cc-space-lg);
+            line-height: var(--cc-leading-relaxed);
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: var(--cc-space-sm);
+            justify-content: center;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: var(--cc-space-sm) var(--cc-space-md);
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: var(--cc-weight-semibold);
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--cc-accent-cyan);
+            color: var(--cc-black);
+        }
+
+        .btn-primary:hover {
+            background: var(--cc-accent-cyan-dark);
+        }
+
+        .btn-secondary {
+            background: var(--cc-gray-800);
+            color: var(--cc-text-primary);
+            border: 1px solid var(--cc-gray-700);
+        }
+
+        .btn-secondary:hover {
+            background: var(--cc-gray-700);
+        }
+
+        .btn-accent {
+            color: var(--cc-accent-cyan);
+        }
+
+        /* Features */
+        .features {
+            padding: var(--cc-space-xl) 0;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--cc-space-md);
+        }
+
+        .feature-card {
+            background: var(--cc-gray-900);
+            padding: var(--cc-space-lg);
+            border-radius: 12px;
+            border: 1px solid var(--cc-gray-800);
+        }
+
+        .feature-icon {
+            font-size: var(--cc-text-5xl);
+            margin-bottom: var(--cc-space-sm);
+        }
+
+        .feature-title {
+            font-size: var(--cc-text-2xl);
+            font-weight: var(--cc-weight-bold);
+            margin-bottom: var(--cc-space-sm);
+        }
+
+        .feature-description {
+            color: var(--cc-text-secondary);
+            line-height: var(--cc-leading-relaxed);
+            margin-bottom: var(--cc-space-md);
+        }
+
+        .feature-link {
+            color: var(--cc-accent-cyan);
+            text-decoration: none;
+            font-weight: var(--cc-weight-semibold);
+        }
+
+        /* Leaderboard Preview */
+        .leaderboard-preview {
+            padding: var(--cc-space-xl) 0;
+            background: var(--cc-gray-900);
+        }
+
+        .section-title {
+            font-size: var(--cc-text-5xl);
+            font-weight: var(--cc-weight-bold);
+            text-align: center;
+            margin-bottom: var(--cc-space-sm);
+        }
+
+        .section-subtitle {
+            font-size: var(--cc-text-xl);
+            color: var(--cc-text-secondary);
+            text-align: center;
+            margin-bottom: var(--cc-space-lg);
+        }
+
+        .coming-soon-box {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--cc-space-lg);
+            background: var(--cc-gray-800);
+            border-radius: 12px;
+            border: 1px solid var(--cc-gray-700);
+        }
+
+        .model-list {
+            color: var(--cc-text-secondary);
+            line-height: var(--cc-leading-relaxed);
+        }
+
+        /* Evaluation Service */
+        .evaluation-service {
+            padding: var(--cc-space-xl) 0;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--cc-space-md);
+            margin-bottom: var(--cc-space-lg);
+        }
+
+        .pricing-card {
+            background: var(--cc-gray-900);
+            padding: var(--cc-space-lg);
+            border-radius: 12px;
+            border: 1px solid var(--cc-gray-800);
+            position: relative;
+        }
+
+        .pricing-card-featured {
+            border-color: var(--cc-accent-cyan);
+        }
+
+        .tier-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--cc-accent-cyan);
+            color: var(--cc-black);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: var(--cc-text-sm);
+            font-weight: var(--cc-weight-semibold);
+        }
+
+        .tier-name {
+            font-size: var(--cc-text-2xl);
+            font-weight: var(--cc-weight-bold);
+            margin-bottom: var(--cc-space-sm);
+        }
+
+        .tier-price {
+            font-size: var(--cc-text-4xl);
+            font-weight: var(--cc-weight-bold);
+            color: var(--cc-accent-cyan);
+            margin-bottom: var(--cc-space-md);
+        }
+
+        .tier-features {
+            list-style: none;
+            padding: 0;
+            color: var(--cc-text-secondary);
+            line-height: var(--cc-leading-relaxed);
+        }
+
+        .tier-features li {
+            margin-bottom: var(--cc-space-xs);
+        }
+
+        .tier-features li:before {
+            content: "✓ ";
+            color: var(--cc-accent-cyan);
+            margin-right: 8px;
+        }
+
+        .cta-box {
+            text-align: center;
+            padding: var(--cc-space-lg);
+            background: var(--cc-gray-900);
+            border-radius: 12px;
+        }
+
+        /* Footer */
+        .site-footer {
+            border-top: 1px solid var(--cc-gray-700);
+            padding: var(--cc-space-xl) 0 var(--cc-space-md);
+            margin-top: var(--cc-space-xl);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: var(--cc-space-lg);
+            margin-bottom: var(--cc-space-lg);
+        }
+
+        .footer-tagline {
+            color: var(--cc-text-secondary);
+            margin: var(--cc-space-xs) 0;
+        }
+
+        .footer-tagline-sub {
+            color: var(--cc-text-tertiary);
+            font-size: var(--cc-text-sm);
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--cc-space-md);
+        }
+
+        .footer-column h4 {
+            margin-bottom: var(--cc-space-sm);
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column a {
+            color: var(--cc-text-secondary);
+            text-decoration: none;
+        }
+
+        .footer-column a:hover {
+            color: var(--cc-accent-cyan);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: var(--cc-space-md);
+            border-top: 1px solid var(--cc-gray-700);
+            color: var(--cc-text-tertiary);
+            font-size: var(--cc-text-sm);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: var(--cc-space-md);
+        }
+
+        .footer-social a {
+            color: var(--cc-text-secondary);
+            text-decoration: none;
+        }
+
+        .footer-social a:hover {
+            color: var(--cc-accent-cyan);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                flex-direction: column;
+                gap: var(--cc-space-sm);
+            }
+
+            .hero-title {
+                font-size: var(--cc-text-4xl);
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
-</head>
-<body>
-    <div class="container">
-        <div class="spinner"></div>
-        <h1>SLM-Bench</h1>
-        <p>Launching soon. Production-grade edge AI evaluation.</p>
-    </div>
 </body>
 </html>
