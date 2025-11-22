@@ -3,10 +3,10 @@ import { sql } from '@vercel/postgres';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const orderId = params.id;
+    const orderId = (await params).id;
 
     // Fetch order from database
     const result = await sql`
