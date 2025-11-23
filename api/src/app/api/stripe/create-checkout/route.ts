@@ -4,7 +4,7 @@ import { sql } from '@vercel/postgres';
 import { v4 as uuidv4 } from 'uuid';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2024-11-20.acacia',
+  apiVersion: '2025-11-17.clover',
 });
 
 export async function POST(request: NextRequest) {
