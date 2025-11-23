@@ -7,6 +7,17 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2025-11-17.clover',
 });
 
+// CORS headers for cross-origin requests
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type',
+};
+
+export async function OPTIONS() {
+  return NextResponse.json({}, { headers: corsHeaders });
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -16,7 +27,7 @@ export async function POST(request: NextRequest) {
     if (!email || !modelName || !huggingfaceUrl || !productType) {
       return NextResponse.json(
         { error: 'Missing required fields' },
-        { status: 400 }
+        { status: 400, headers: corsHeaders }
       );
     }
 
@@ -46,7 +57,7 @@ export async function POST(request: NextRequest) {
     if (!selectedPrice) {
       return NextResponse.json(
         { error: 'Invalid product type' },
-        { status: 400 }
+        { status: 400, headers: corsHeaders }
       );
     }
 
@@ -114,12 +125,12 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       sessionId: session.id,
       url: session.url,
-    });
+    }, { headers: corsHeaders });
   } catch (error: any) {
     console.error('Checkout error:', error);
     return NextResponse.json(
       { error: error.message || 'Internal server error' },
-      { status: 500 }
+      { status: 500, headers: corsHeaders }
     );
   }
 }
