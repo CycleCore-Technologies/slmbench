@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { sql } from '@vercel/postgres';
+import { query } from '@/lib/db';
 import { v4 as uuidv4 } from 'uuid';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -98,8 +98,8 @@ export async function POST(request: NextRequest) {
     });
 
     // Store order in database
-    await sql`
-      INSERT INTO evaluation_orders (
+    await query(
+      `INSERT INTO evaluation_orders (
         id,
         stripe_session_id,
         email,
@@ -109,18 +109,19 @@ export async function POST(request: NextRequest) {
         amount_cents,
         payment_status,
         evaluation_status
-      ) VALUES (
-        ${orderId},
-        ${session.id},
-        ${email},
-        ${modelName},
-        ${huggingfaceUrl},
-        ${productType},
-        ${selectedPrice.amount},
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
+      [
+        orderId,
+        session.id,
+        email,
+        modelName,
+        huggingfaceUrl,
+        productType,
+        selectedPrice.amount,
         'pending',
-        'queued'
-      )
-    `;
+        'queued',
+      ]
+    );
 
     return NextResponse.json({
       sessionId: session.id,

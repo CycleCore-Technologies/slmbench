@@ -1,3 +1,17 @@
+# Copyright 2025 CycleCore Technologies
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 #!/usr/bin/env python3
 """
 EdgeJSON Evaluation Harness
@@ -27,9 +41,10 @@ import re
 try:
     from transformers import AutoModelForCausalLM, AutoTokenizer
     import torch
-except ImportError:
-    print("Error: transformers library not installed.")
-    print("Run: pip install transformers torch")
+    from peft import PeftModel
+except ImportError as e:
+    print(f"Error: Required library not installed: {e}")
+    print("Run: pip install transformers torch peft")
     exit(1)
 
 
@@ -99,6 +114,10 @@ def calculate_field_f1(expected: Dict, predicted: Dict) -> Tuple[float, float, f
     if not expected or not predicted:
         return 0.0, 0.0, 0.0
 
+    # Handle case where predicted is not a dict (e.g., list or other type)
+    if not isinstance(predicted, dict):
+        return 0.0, 0.0, 0.0
+
     expected_fields = set(expected.keys())
     predicted_fields = set(predicted.keys())
 
@@ -125,6 +144,10 @@ def check_schema_compliance(expected: Dict, predicted: Dict) -> bool:
     (All expected keys present, types match)
     """
     if not predicted:
+        return False
+
+    # Handle case where predicted is not a dict
+    if not isinstance(predicted, dict):
         return False
 
     expected_keys = set(expected.keys())
@@ -160,11 +183,11 @@ def evaluate_example(
 
     prompt = example["prompt"]
     expected_output = example["expected_output"]
-    complexity = example["complexity"]
-    schema_name = example["schema_name"]
+    complexity = example.get("complexity", "unknown")
+    schema_name = example.get("schema_name", example.get("schema_id", "unknown"))
 
-    # Format prompt for model
-    formatted_prompt = f"Extract the following information as valid JSON:\n\n{prompt}\n\nJSON:"
+    # Format prompt for model (matching training format)
+    formatted_prompt = f"Extract the structured JSON data from the following text.\n\nInput: {prompt}\n\nOutput:"
 
     # Tokenize
     inputs = tokenizer(formatted_prompt, return_tensors="pt").to(device)
@@ -317,6 +340,7 @@ def print_results(aggregate: AggregateResults):
 def main():
     parser = argparse.ArgumentParser(description="Evaluate SLM on EdgeJSON benchmark")
     parser.add_argument("--model", type=str, required=True, help="Hugging Face model name or path")
+    parser.add_argument("--adapter", type=str, help="Path to LoRA adapter (optional, for fine-tuned models)")
     parser.add_argument("--dataset", type=str, required=True, help="Path to dataset JSONL file")
     parser.add_argument("--output", type=str, help="Path to save results JSON")
     parser.add_argument("--limit", type=int, help="Limit number of examples (for testing)")
@@ -326,11 +350,19 @@ def main():
     args = parser.parse_args()
 
     print(f"Loading model: {args.model}")
+    if args.adapter:
+        print(f"Loading LoRA adapter: {args.adapter}")
     print(f"Device: {args.device}")
 
     # Load model and tokenizer
     tokenizer = AutoTokenizer.from_pretrained(args.model)
     model = AutoModelForCausalLM.from_pretrained(args.model)
+
+    # Load LoRA adapter if specified
+    if args.adapter:
+        print("Applying LoRA adapter...")
+        model = PeftModel.from_pretrained(model, args.adapter)
+        print("✓ LoRA adapter loaded successfully")
 
     if args.device == "cuda" and torch.cuda.is_available():
         model = model.to("cuda")

@@ -1,0 +1,261 @@
+/* Professional Academic Paper Styling - Dark Mode */
+
+body {
+    font-family: 'Georgia', 'Palatino Linotype', 'Book Antiqua', serif;
+    font-size: 11pt;
+    line-height: 1.8;
+    color: #e8e8e8;
+    background-color: #1a1a1a;
+    max-width: 8.5in;
+    margin: 0 auto;
+    padding: 0.5in;
+}
+
+/* Headers */
+h1 {
+    font-size: 20pt;
+    font-weight: bold;
+    color: #4FC3F7;
+    text-align: center;
+    margin-top: 0.5in;
+    margin-bottom: 0.3in;
+    border-bottom: 3px solid #4FC3F7;
+    padding-bottom: 0.2in;
+}
+
+h2 {
+    font-size: 16pt;
+    font-weight: bold;
+    color: #4FC3F7;
+    margin-top: 0.4in;
+    margin-bottom: 0.2in;
+    border-bottom: 2px solid #4FC3F7;
+    padding-bottom: 0.1in;
+}
+
+h3 {
+    font-size: 13pt;
+    font-weight: bold;
+    color: #81D4FA;
+    margin-top: 0.25in;
+    margin-bottom: 0.15in;
+}
+
+h4 {
+    font-size: 11pt;
+    font-weight: bold;
+    color: #81D4FA;
+    margin-top: 0.2in;
+    margin-bottom: 0.1in;
+}
+
+/* Paragraphs */
+p {
+    margin-top: 0.1in;
+    margin-bottom: 0.1in;
+    text-align: justify;
+}
+
+/* Lists */
+ul, ol {
+    margin-left: 0.3in;
+    margin-top: 0.1in;
+    margin-bottom: 0.1in;
+}
+
+li {
+    margin-bottom: 0.05in;
+}
+
+/* Tables - IMPROVED */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.2in;
+    margin-bottom: 0.2in;
+    page-break-inside: avoid;
+    font-size: 10pt;
+    background-color: #252525;
+}
+
+thead {
+    display: table-header-group;
+}
+
+th {
+    background-color: #2a2a2a;
+    color: #4FC3F7;
+    font-weight: bold;
+    text-align: left;
+    padding: 8px 12px;
+    border: 1px solid #404040;
+    vertical-align: top;
+}
+
+td {
+    padding: 6px 12px;
+    border: 1px solid #404040;
+    vertical-align: top;
+    text-align: left;
+    color: #e8e8e8;
+}
+
+tr:nth-child(even) {
+    background-color: #222222;
+}
+
+tr:hover {
+    background-color: #2d2d2d;
+}
+
+/* Make sure bold stands out */
+td > strong, 
+strong {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* Code blocks */
+code {
+    font-family: 'Courier New', 'Consolas', monospace;
+    font-size: 9pt;
+    background-color: #2a2a2a;
+    padding: 2px 4px;
+    border-radius: 3px;
+    color: #FFB74D;
+}
+
+pre {
+    font-family: 'Courier New', 'Consolas', monospace;
+    font-size: 9pt;
+    background-color: #252525;
+    border: 1px solid #404040;
+    border-left: 3px solid #4FC3F7;
+    padding: 10px;
+    overflow-x: auto;
+    margin: 0.15in 0;
+    page-break-inside: avoid;
+    color: #e8e8e8;
+}
+
+pre code {
+    background-color: transparent;
+    padding: 0;
+    color: #e8e8e8;
+}
+
+/* Links */
+a {
+    color: #4FC3F7;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #81D4FA;
+}
+
+/* Blockquotes */
+blockquote {
+    border-left: 4px solid #CE93D8;
+    padding-left: 15px;
+    margin-left: 0.2in;
+    margin-right: 0.2in;
+    font-style: italic;
+    color: #cccccc;
+}
+
+/* Emphasis */
+em {
+    font-style: italic;
+    color: #CE93D8;
+}
+
+/* Horizontal rules */
+hr {
+    border: none;
+    border-top: 1px solid #404040;
+    margin: 0.2in 0;
+}
+
+/* Images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0.2in auto;
+    page-break-inside: avoid;
+}
+
+/* Page breaks */
+.page-break {
+    page-break-after: always;
+}
+
+/* Table captions */
+caption {
+    font-weight: bold;
+    margin-bottom: 0.1in;
+    text-align: left;
+    color: #4FC3F7;
+}
+
+/* TOC styling */
+#TOC {
+    border: 1px solid #404040;
+    padding: 15px;
+    margin-bottom: 0.3in;
+    background-color: #252525;
+}
+
+#TOC ul {
+    list-style-type: none;
+    margin-left: 0;
+}
+
+#TOC a {
+    color: #4FC3F7;
+    text-decoration: none;
+}
+
+#TOC a:hover {
+    text-decoration: underline;
+    color: #81D4FA;
+}
+
+/* Title page styling */
+.title {
+    text-align: center;
+    font-size: 20pt;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.author {
+    text-align: center;
+    font-size: 12pt;
+    margin-top: 0.1in;
+    color: #e8e8e8;
+}
+
+.date {
+    text-align: center;
+    font-size: 11pt;
+    margin-bottom: 0.3in;
+    color: #cccccc;
+}
+
+/* Print optimizations */
+@media print {
+    body {
+        font-size: 10pt;
+    }
+    
+    h1 { page-break-after: avoid; }
+    h2, h3, h4 { page-break-after: avoid; }
+    
+    table { page-break-inside: avoid; }
+    pre { page-break-inside: avoid; }
+    img { page-break-inside: avoid; }
+}
+

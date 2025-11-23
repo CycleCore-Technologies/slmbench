@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { sql } from '@vercel/postgres';
+import { query } from '@/lib/db';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2025-11-17.clover',
@@ -40,14 +40,15 @@ export async function POST(request: NextRequest) {
         // Update order with payment success
         const orderId = session.metadata?.orderId;
         if (orderId) {
-          await sql`
-            UPDATE evaluation_orders
+          await query(
+            `UPDATE evaluation_orders
             SET
               payment_status = 'paid',
-              stripe_payment_intent_id = ${session.payment_intent as string},
+              stripe_payment_intent_id = $1,
               paid_at = NOW()
-            WHERE id = ${orderId}
-          `;
+            WHERE id = $2`,
+            [session.payment_intent as string, orderId]
+          );
 
           // TODO: Trigger evaluation job (Redis queue, email notification, etc.)
           console.log(`Payment successful for order ${orderId}`);
@@ -63,11 +64,12 @@ export async function POST(request: NextRequest) {
         const orderId = session.metadata?.orderId;
 
         if (orderId) {
-          await sql`
-            UPDATE evaluation_orders
+          await query(
+            `UPDATE evaluation_orders
             SET payment_status = 'failed'
-            WHERE id = ${orderId}
-          `;
+            WHERE id = $1`,
+            [orderId]
+          );
         }
         break;
       }
@@ -88,8 +90,8 @@ export async function POST(request: NextRequest) {
 
           if (orderId && email) {
             // Create or update enterprise subscription
-            await sql`
-              INSERT INTO enterprise_subscriptions (
+            await query(
+              `INSERT INTO enterprise_subscriptions (
                 id,
                 stripe_subscription_id,
                 stripe_customer_id,
@@ -97,22 +99,26 @@ export async function POST(request: NextRequest) {
                 status,
                 current_period_start,
                 current_period_end
-              ) VALUES (
-                ${orderId},
-                ${subscription.id},
-                ${subscription.customer as string},
-                ${email},
-                ${subscription.status},
-                to_timestamp(${subscription.current_period_start}),
-                to_timestamp(${subscription.current_period_end})
-              )
+              ) VALUES ($1, $2, $3, $4, $5, to_timestamp($6), to_timestamp($7))
               ON CONFLICT (stripe_subscription_id)
               DO UPDATE SET
-                status = ${subscription.status},
-                current_period_start = to_timestamp(${subscription.current_period_start}),
-                current_period_end = to_timestamp(${subscription.current_period_end}),
-                updated_at = NOW()
-            `;
+                status = $8,
+                current_period_start = to_timestamp($9),
+                current_period_end = to_timestamp($10),
+                updated_at = NOW()`,
+              [
+                orderId,
+                subscription.id,
+                subscription.customer as string,
+                email,
+                subscription.status,
+                subscription.current_period_start,
+                subscription.current_period_end,
+                subscription.status,
+                subscription.current_period_start,
+                subscription.current_period_end,
+              ]
+            );
           }
         }
         break;
@@ -121,11 +127,12 @@ export async function POST(request: NextRequest) {
       case 'customer.subscription.deleted': {
         const subscription = event.data.object as Stripe.Subscription;
 
-        await sql`
-          UPDATE enterprise_subscriptions
+        await query(
+          `UPDATE enterprise_subscriptions
           SET status = 'canceled', updated_at = NOW()
-          WHERE stripe_subscription_id = ${subscription.id}
-        `;
+          WHERE stripe_subscription_id = $1`,
+          [subscription.id]
+        );
         break;
       }
 

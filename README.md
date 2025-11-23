@@ -1,197 +1,213 @@
 # SLMBench
 
-**Product Name**: SLM-Bench Edge Pack
-**Domain**: slmbench.com (to be acquired)
-**Owner**: CycleCore Technologies LLC
-**Agent**: CC-SLM (Claude Code - SLM Benchmark)
-**Territory Status**: Puerto Rico Model (Lexopoly Federation)
-**Mission**: Edge AI evaluation service + benchmarks for Small Language Models
+**Practical benchmarks for Small Language Models on edge devices**
+
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Models](https://img.shields.io/badge/Models-HuggingFace-yellow)](https://huggingface.co/CycleCoreTechnologies)
 
 ---
 
 ## Overview
 
-SLM-Bench Edge Pack is CycleCore Technologies' edge AI evaluation initiative that provides:
+SLMBench is an open-source benchmark suite for evaluating Small Language Models (SLMs) on practical edge AI tasks. Developed by CycleCore Technologies, it focuses on real-world applications rather than academic benchmarks.
 
-1. **Benchmark Suite**: Practical edge AI tasks (JSON extraction, intent classification, function calling)
-2. **Baseline Models**: CycleCore-certified fine-tuned SLMs (SmolLM2, Qwen2.5)
-3. **Evaluation Service**: Independent testing and validation for SLM developers
-4. **Thought Leadership**: Technical content establishing CycleCore as edge AI authority
-
-**Target Market**: SLM developers, hardware vendors, enterprises deploying edge AI
-**Value Proposition**: Rigorous, transparent edge AI evaluation with energy measurement
-**Business Model**: Evaluation-as-a-Service ($2.5K-$7.5K per model) + enterprise consulting
+**Key Features:**
+- 🎯 **Task-Specific Benchmarks**: JSON extraction, intent classification, function calling
+- 📊 **Baseline Models**: Fine-tuned SmolLM2 models (135M, 360M parameters)
+- ⚡ **Edge-Optimized**: Designed for deployment on resource-constrained devices
+- 🔬 **Reproducible**: Complete training scripts, datasets, and evaluation code
+- 📈 **Transparent**: All results and methodologies publicly documented
 
 ---
 
-## The Opportunity
+## Benchmarks
 
-**Market Gap (November 2025):**
-- Academic benchmarks (SLM-Bench, MMLU, HellaSwag) don't cover function calling
-- No standardized energy measurement protocols for edge deployment
-- Missing cross-platform validation (Raspberry Pi, laptop, browser)
-- Enterprises need independent validation for SLM procurement
+### EdgeJSON: Structured Data Extraction
+Extract JSON from natural language across 24 diverse schemas (e-commerce, healthcare, finance, etc.)
 
-**CycleCore Differentiation:**
-- Practical task focus (not academic)
-- Standardized energy measurement (Joulescope hardware protocol)
-- Cross-hardware testing (Pi 5, x86 laptop, WebGPU browser)
-- Transparent methodology (publish all results, charge for service not placement)
+- **Dataset**: 787 examples (629 train, 158 test) - validated
+- **Schemas**: 24 types (simple, medium, complex)
+- **Metric**: JSONExact (strict schema compliance)
+- **Baseline Models**:
+  - **Maaza MLM-135M-JSON v1.0**: 24.7% JSONExact ([🤗 HuggingFace](https://huggingface.co/CycleCoreTechnologies/Maaza-MLM-135M-JSON-v1))
+  - **Maaza SLM-360M-JSON v1.0**: 55.1% JSONExact ([🤗 HuggingFace](https://huggingface.co/CycleCoreTechnologies/Maaza-SLM-360M-JSON-v1))
 
----
+### EdgeIntent: Intent Classification **
+Multi-domain intent recognition for conversational AI
 
-## Three-Stream Mission
-
-**Stream 1: Research + Thought Leadership**
-- Publish SLM ecosystem insights
-- Technical blog posts on edge deployment
-- Open-source benchmark suite (credibility building)
-- Academic paper submissions (workshops/demos)
-
-**Stream 2: Build Benchmark Infrastructure**
-- Edge Pack tasks: JSON extraction, intent classification, function calling
-- Hardware test platforms: Raspberry Pi 5, laptop, browser (WebGPU)
-- Energy measurement protocol (Joulescope JS110)
-- Baseline models: Fine-tuned SmolLM2-1.7B, Qwen2.5-1.5B
-
-**Stream 3: Marketing + Community**
-- SLM rankings leaderboard (public, free access)
-- Developer documentation
-- Case studies and evaluation reports
-- Social media presence (technical credibility)
+### EdgeFuncCall: Function Calling **
+Tool use and API interaction for agentic workflows
 
 ---
 
-## Technical Approach
+## Quick Start
 
-### Benchmark Suite (Edge Pack v1.0)
+### Installation
 
-**Task 1: JSON Extraction**
-- Dataset: 1,000+ real-world schemas (diverse complexity)
-- Metrics: Schema compliance, field accuracy, error handling
-- Baseline: SmolLM2-1.7B, Qwen2.5-1.5B
-
-**Task 2: Intent Classification**
-- Dataset: 50-200 class taxonomy (enterprise scale)
-- Variants: Few-shot, zero-shot
-- Metrics: Accuracy, latency, energy per inference
-
-**Task 3: Function Calling**
-- Dataset: Multi-turn tool use scenarios
-- Metrics: Parameter extraction accuracy, error recovery
-- Baseline: Llama 3.2 3B, custom distilled model
-
-### Hardware Platforms
-
-1. **Raspberry Pi 5 (8GB)** - Edge reference platform
-2. **Mid-range laptop (x86, 16GB RAM)** - Consumer hardware
-3. **Browser (WebGPU on Chrome)** - Emerging platform
-
-### Energy Measurement
-
-- Hardware: Joulescope JS110 power meter
-- Protocol: Standardized test runs, controlled environment
-- Metrics: Joules per task, tokens per joule, cost per 1M tokens
-
----
-
-## Technology Stack
-
-- **Benchmarking**: Python (HuggingFace Transformers, ONNX Runtime)
-- **Browser Models**: WebLLM, Transformers.js (WebGPU acceleration)
-- **Evaluation Platform**: TBD (FastAPI + PostgreSQL + Redis, or static site)
-- **Energy Monitoring**: Joulescope API (Python SDK)
-
----
-
-## Code Sharing Framework
-
-Per Constitutional Amendment 001 Section 5.2 and DOCK-025 Section 4.3:
-
-**SLM-Bench can freely copy code from Lexopoly products**:
-- Infrastructure setup (deployment, monitoring)
-- Data pipelines (if applicable)
-- UI components (if building evaluation platform)
-
-**Process**: Direct copy + document source in commit message (no pre-approval required).
-
-**See**: `/home/rain/federation/ops/spinup/CC_SLM_SPINUP_PLAN.md` for details.
-
----
-
-## Development
-
-### Prerequisites
-- Python 3.10+
-- Node.js 18+ (for browser testing)
-- Docker (for reproducible environments)
-- Joulescope JS110 (for energy measurement)
-
-### Setup
 ```bash
-cd /home/rain/SLMBench
-# TBD: Python venv setup, dependency installation
+git clone https://github.com/CycleCore/SLMBench.git
+cd SLMBench
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+### Evaluate a Model
+
+```bash
+# EdgeJSON benchmark
+cd benchmarks/edge_json
+python scripts/eval.py \
+  --model_path "HuggingFaceTB/SmolLM2-135M" \
+  --test_file "data/edgejson_test_v3.jsonl" \
+  --output_dir "results/my_model"
+```
+
+### Use Our Baseline Models
+
+```python
+from transformers import AutoModelForCausalLM, AutoTokenizer
+from peft import PeftModel
+
+# Load base model
+base_model = AutoModelForCausalLM.from_pretrained("HuggingFaceTB/SmolLM2-135M")
+tokenizer = AutoTokenizer.from_pretrained("HuggingFaceTB/SmolLM2-135M")
+
+# Load fine-tuned adapter
+model = PeftModel.from_pretrained(base_model, "CycleCoreTechnologies/Maaza-MLM-135M-JSON-v1")
+
+# Extract JSON
+prompt = """Extract order details:
+Order #12345 placed by Jane Smith on 2025-11-20.
+Total: $127.50. Shipping to 123 Main St, Boston MA.
+
+JSON:"""
+
+inputs = tokenizer(prompt, return_tensors="pt")
+outputs = model.generate(**inputs, max_new_tokens=200)
+print(tokenizer.decode(outputs[0]))
 ```
 
 ---
 
-## Governance
+## Results
 
-**Territory Status**: Puerto Rico Model
-**Oversight**: CC-FCO (Federation Compliance Officer)
-**Review Gates**: Day 7, 14, 30, then quarterly
-**Commercial Boundary**: Pre-approved (complementary to MCPBodega, Lexopoly products)
+### EdgeJSON v3 Benchmark
 
-**Governance Documents**:
-- Constitutional Amendment 001: Multi-LLC Membership Framework
-- DOCK-025: Multi-LLC Coordination Protocol
-- CC-SLM Spinup Plan: `/home/rain/federation/ops/spinup/CC_SLM_SPINUP_PLAN.md`
+| Model | Parameters | JSONExact | Field F1 | Training Time |
+|-------|-----------|-----------|----------|---------------|
+| **Maaza MLM-135M** | 135M | **24.7%** | 0.520 | <1 min |
+| **Maaza SLM-360M** | 360M | **55.1%** | 0.780 | ~2 min |
+| SmolLM2-135M (base) | 135M | 1.9% | 0.024 | - |
+| SmolLM2-360M (base) | 360M | ~5% | ~0.15 | - |
 
----
+**Key Findings:**
+- Fine-tuning provides **13x improvement** (MLM-135M) to **11x improvement** (SLM-360M) over base models
+- Capacity scaling: 2.7x parameters → 2.2x JSONExact performance
+- Training efficiency: <2 minutes on single GPU (RTX 4080)
 
-## Timeline
-
-**Phase 1: Research + Planning** (Weeks 1-2):
-- Review GPT chat brainstorming
-- Validate ecosystem research findings
-- Define benchmark task specifications
-- Acquire hardware (Joulescope, Raspberry Pi 5 if needed)
-
-**Phase 2: Benchmark MVP** (Weeks 3-6):
-- Build JSON extraction task + evaluation scripts
-- Establish energy measurement protocol
-- Fine-tune SmolLM2-1.7B baseline model
-- Publish initial benchmark results (open, free)
-
-**Phase 3: Service Launch** (Weeks 7-12):
-- Build evaluation service workflow
-- Create pricing + service offering
-- Marketing materials (blog posts, case studies)
-- First paid evaluation engagement
-
-**Revenue Target**: $50K-$100K Year 1 (10-20 evaluations)
+Full analysis: [CAPACITY_SCALING_ANALYSIS.md](results/CAPACITY_SCALING_ANALYSIS.md)
 
 ---
 
-## Status
+## Repository Structure
 
-**Current Phase**: Pre-spinup (directory structure created)
-**Next Step**: CC-SLM agent spinup via Federation Spinup Wizard
-**Research Assets**:
-- GPT chat brainstorming: `research/GPT_CHAT_SLM_BRAINSTORM.md` (to be added)
-- Ecosystem research: `research/ECOSYSTEM_RESEARCH_20251119.md`
+```
+SLMBench/
+├── benchmarks/
+│   ├── edge_json/          # JSON extraction benchmark
+│   │   ├── data/           # Train/test datasets
+│   │   ├── schemas/        # 25 JSON schemas
+│   │   └── scripts/        # Training & evaluation
+│   ├── edge_intent/        # Intent classification
+│   └── edge_funccall/      # Function calling
+├── models/
+│   ├── mlm_135m_json/      # Maaza MLM-135M fine-tuned model
+│   └── slm_360m_json/      # Maaza SLM-360M fine-tuned model
+├── results/                # Evaluation results & analysis
+└── docs/                   # Documentation & guides
+```
 
-**Estimated Start**: 2025-11-19
+---
+
+## Models
+
+Our baseline models are available on HuggingFace:
+
+- **[Maaza-MLM-135M-JSON-v1](https://huggingface.co/CycleCore/Maaza-MLM-135M-JSON-v1)**: Micro model for ultra-low-power devices
+- **[Maaza-SLM-360M-JSON-v1](https://huggingface.co/CycleCore/Maaza-SLM-360M-JSON-v1)**: Small model balancing performance and efficiency
+
+Both models:
+- Fine-tuned from SmolLM2 base models
+- Trained on EdgeJSON v3 (629 examples, 25 schemas)
+- Use LoRA adapters for efficient deployment
+- Licensed under Apache 2.0
+
+---
+
+## Citation
+
+If you use SLMBench in your research, please cite:
+
+```bibtex
+@misc{cyclecore2025slmbench,
+  title={SLMBench: Practical Benchmarks for Small Language Models},
+  author={CycleCore Technologies},
+  year={2025},
+  howpublished={\url{https://github.com/CycleCore/SLMBench}}
+}
+```
+
+For the baseline models:
+
+```bibtex
+@misc{cyclecore2025maaza,
+  title={Maaza: Task-Specialized Small Language Models for Edge Deployment},
+  author={CycleCore Technologies},
+  year={2025},
+  howpublished={\url{https://huggingface.co/CycleCore}}
+}
+```
+
+---
+
+## Contributing
+
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+**Ways to contribute:**
+- 🐛 Report bugs or issues
+- 💡 Suggest new benchmarks or tasks
+- 📊 Submit evaluation results for your models
+- 🔧 Improve documentation or code
+- 🎯 Add new schemas to EdgeJSON
 
 ---
 
 ## License
 
-**Ownership**: CycleCore Technologies LLC (100%)
-**Code Sharing**: Lexopoly LLC can copy code (per federation code sharing agreement)
-**External**: Proprietary (benchmark suite may be open-source for credibility)
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
+
+**Third-Party Licenses:**
+- Base models (SmolLM2): Apache 2.0 ([HuggingFace](https://huggingface.co/HuggingFaceTB/SmolLM2-135M))
+- Training framework (Unsloth): Apache 2.0
 
 ---
 
-**Federation Integration**: ✅ Ready for Federation Spinup Wizard
-**Agent**: CC-SLM (Territory: CycleCore Technologies LLC)
+## Links
+
+- **Models**: https://huggingface.co/CycleCore
+- **Documentation**: [docs/](docs/)
+- **Results**: [results/](results/)
+- 
+---
+
+## About CycleCore Technologies
+
+CycleCore Technologies develops practical AI solutions for edge deployment. We focus on making advanced AI accessible on resource-constrained devices through efficient model design and rigorous benchmarking.
+
+**Contact**: hi@cyclecore.ai
+
+---
+
+*Last updated: November 2025*

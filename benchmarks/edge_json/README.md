@@ -163,15 +163,43 @@ Each line in the dataset JSONL file contains:
 
 ---
 
-## Baseline Results (Coming Week 2)
+## Baseline Results
 
-We're currently running baseline evaluations on:
-- SmolLM2-135M, SmolLM2-360M, SmolLM2-1.7B
+### CycleCore-Maaza-SLM-135M-JSON (Fine-tuned)
+
+**Status**: ✅ Training Complete | ⏳ Evaluation Pending
+
+Our first fine-tuned model for EdgeJSON:
+
+| Metric | Expected Performance |
+|--------|---------------------|
+| **Model** | CycleCore-Maaza-SLM-135M-JSON |
+| **Base** | SmolLM2-135M (135M params) |
+| **Method** | LoRA fine-tuning (4.8M trainable params) |
+| **Training Data** | 503 examples (EdgeJSON v2) |
+| **Training Time** | 52 seconds |
+| **Model Size** | 24MB (adapter only) |
+| **JSONExact** | 60-80% (expected) |
+| **FieldF1** | 0.75-0.85 (expected) |
+| **Improvement** | 3-5x over base model |
+
+**Model Files**: `/models/mlm_135m_json/final_model/`
+**Documentation**: `/docs/PHASE4_TRAINING_COMPLETE.md`
+**Model Card**: `/models/mlm_135m_json/final_model/README.md`
+
+*Formal evaluation pending - see documentation for usage examples.*
+
+---
+
+### Planned Baseline Evaluations
+
+Additional models for comparison (upcoming):
+- SmolLM2-135M (base, zero-shot)
+- SmolLM2-360M, SmolLM2-1.7B
 - Qwen2.5-0.5B, Qwen2.5-1.5B
 - Llama 3.2-1B, Llama 3.2-3B
-- CycleCore Maaza SLM-135M-JSON (fine-tuned for this task)
 
-Results will be published in Week 2 blog post and added to the leaderboard.
+Results will be published as evaluations complete.
 
 ---
 

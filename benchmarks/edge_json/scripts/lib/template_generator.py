@@ -45,10 +45,158 @@ class TemplateGenerator:
         # Generate the expected output first
         expected_output = self._generate_object(schema)
 
+        # Calculate derived fields after generation (fixes math consistency)
+        expected_output = self._calculate_derived_fields(schema_id, expected_output)
+
         # Generate a natural language prompt from the data
         prompt = self._generate_prompt(schema_id, expected_output, schema)
 
         return prompt, expected_output
+
+    def _calculate_derived_fields(self, schema_id: str, output: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Calculate derived fields after generation to ensure mathematical consistency.
+
+        This fixes the bug where fields like subtotal, total, tax were randomly
+        generated instead of being calculated from their component values.
+
+        Args:
+            schema_id: Schema identifier (e.g., "shopping_cart", "invoice")
+            output: Generated output dict with raw values
+
+        Returns:
+            Output dict with corrected derived field values
+        """
+        if schema_id == "shopping_cart":
+            return self._calculate_shopping_cart_fields(output)
+        elif schema_id == "invoice":
+            return self._calculate_invoice_fields(output)
+        elif schema_id == "order_details":
+            return self._calculate_order_details_fields(output)
+        else:
+            # No derived fields to calculate for this schema
+            return output
+
+    def _calculate_shopping_cart_fields(self, output: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Calculate shopping_cart derived fields:
+        - subtotal = sum(item.quantity * item.price * (1 - discount/100))
+        - tax = subtotal * tax_rate (if tax_rate present)
+        - total = subtotal + shipping_cost + tax
+        """
+        # Calculate subtotal from items
+        subtotal = 0.0
+        for item in output.get("items", []):
+            item_total = item["quantity"] * item["price"]
+
+            # Apply discount if present
+            if "discount_percentage" in item and item["discount_percentage"] > 0:
+                item_total *= (1 - item["discount_percentage"] / 100)
+
+            subtotal += item_total
+
+        subtotal = round(subtotal, 2)
+
+        # Update subtotal field
+        if "subtotal" in output:
+            output["subtotal"] = subtotal
+
+        # Calculate tax if tax_rate is present
+        tax = 0.0
+        if "tax_rate" in output and output["tax_rate"] > 0:
+            tax = round(subtotal * output["tax_rate"] / 100, 2)
+            if "tax" in output:
+                output["tax"] = tax
+        elif "tax" in output:
+            # If tax exists but no tax_rate, keep the generated tax value
+            tax = output["tax"]
+
+        # Calculate total
+        total = subtotal
+
+        if "shipping_cost" in output:
+            total += output["shipping_cost"]
+
+        if "tax" in output:
+            total += output["tax"]
+
+        total = round(total, 2)
+
+        # Update total field
+        if "total" in output:
+            output["total"] = total
+
+        return output
+
+    def _calculate_invoice_fields(self, output: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Calculate invoice derived fields:
+        - line_items[].total = quantity * unit_price
+        - subtotal = sum(line_items[].total)
+        - tax = subtotal * tax_rate (if tax_rate present)
+        - total_amount = subtotal + tax
+        """
+        # Calculate line item totals
+        subtotal = 0.0
+
+        for item in output.get("line_items", []):
+            item_total = item["quantity"] * item["unit_price"]
+            item_total = round(item_total, 2)
+
+            # Update line item total if present
+            if "total" in item:
+                item["total"] = item_total
+
+            subtotal += item_total
+
+        subtotal = round(subtotal, 2)
+
+        # Update subtotal field
+        if "subtotal" in output:
+            output["subtotal"] = subtotal
+
+        # Calculate tax if tax_rate is present
+        tax = 0.0
+        if "tax_rate" in output and output["tax_rate"] > 0:
+            tax = round(subtotal * output["tax_rate"] / 100, 2)
+            if "tax" in output:
+                output["tax"] = tax
+        elif "tax" in output:
+            # If tax exists but no tax_rate, keep the generated tax value
+            tax = output["tax"]
+
+        # Calculate total_amount
+        total_amount = subtotal
+
+        if "tax" in output:
+            total_amount += output["tax"]
+
+        total_amount = round(total_amount, 2)
+
+        # Update total_amount field
+        if "total_amount" in output:
+            output["total_amount"] = total_amount
+
+        return output
+
+    def _calculate_order_details_fields(self, output: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Calculate order_details derived fields:
+        - total_amount = sum(item.quantity * item.price)
+        """
+        # Calculate total from items
+        total_amount = 0.0
+
+        for item in output.get("items", []):
+            total_amount += item["quantity"] * item["price"]
+
+        total_amount = round(total_amount, 2)
+
+        # Update total_amount field
+        if "total_amount" in output:
+            output["total_amount"] = total_amount
+
+        return output
 
     def _generate_object(self, schema: Dict[str, Any]) -> Dict[str, Any]:
         """Generate a JSON object matching the schema."""
