@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { sql } from '@vercel/postgres';
+import { query } from '@/lib/db';
 
 export async function GET(
   request: NextRequest,
@@ -9,8 +9,8 @@ export async function GET(
     const orderId = (await params).id;
 
     // Fetch order from database
-    const result = await sql`
-      SELECT
+    const result = await query(
+      `SELECT
         id,
         email,
         model_name,
@@ -26,8 +26,9 @@ export async function GET(
         paid_at,
         completed_at
       FROM evaluation_orders
-      WHERE id = ${orderId}
-    `;
+      WHERE id = $1`,
+      [orderId]
+    );
 
     if (result.rows.length === 0) {
       return NextResponse.json(
