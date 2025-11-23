@@ -8,6 +8,13 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
 
+// Type extension for Stripe Subscription with period properties
+// These properties exist in the API response but aren't in TypeScript definitions for this API version
+type SubscriptionWithPeriod = Stripe.Subscription & {
+  current_period_start: number;
+  current_period_end: number;
+};
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.text();
@@ -67,7 +74,7 @@ export async function POST(request: NextRequest) {
 
       case 'customer.subscription.created':
       case 'customer.subscription.updated': {
-        const subscription = event.data.object as Stripe.Subscription;
+        const subscription = event.data.object as SubscriptionWithPeriod;
 
         // Handle enterprise subscription
         const session = await stripe.checkout.sessions.list({
@@ -96,14 +103,14 @@ export async function POST(request: NextRequest) {
                 ${subscription.customer as string},
                 ${email},
                 ${subscription.status},
-                to_timestamp(${subscription['current_period_start']}),
-                to_timestamp(${subscription['current_period_end']})
+                to_timestamp(${subscription.current_period_start}),
+                to_timestamp(${subscription.current_period_end})
               )
               ON CONFLICT (stripe_subscription_id)
               DO UPDATE SET
                 status = ${subscription.status},
-                current_period_start = to_timestamp(${subscription['current_period_start']}),
-                current_period_end = to_timestamp(${subscription['current_period_end']}),
+                current_period_start = to_timestamp(${subscription.current_period_start}),
+                current_period_end = to_timestamp(${subscription.current_period_end}),
                 updated_at = NOW()
             `;
           }
