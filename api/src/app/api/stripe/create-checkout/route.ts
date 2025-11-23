@@ -26,11 +26,13 @@ export async function POST(request: NextRequest) {
         amount: 2000, // $20.00 in cents
         name: 'Single Model Verification',
         description: 'Official verification for 1 model',
+        recurring: false,
       },
       pack: {
         amount: 7900, // $79.00 in cents
         name: 'Verification Pack (5 Models)',
         description: 'Verify up to 5 models and save 21%',
+        recurring: false,
       },
       enterprise: {
         amount: 49900, // $499.00 in cents (monthly)
