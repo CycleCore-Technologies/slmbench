@@ -96,14 +96,14 @@ export async function POST(request: NextRequest) {
                 ${subscription.customer as string},
                 ${email},
                 ${subscription.status},
-                to_timestamp(${subscription.current_period_start}),
-                to_timestamp(${subscription.current_period_end})
+                to_timestamp(${subscription.currentPeriodStart}),
+                to_timestamp(${subscription.currentPeriodEnd})
               )
               ON CONFLICT (stripe_subscription_id)
               DO UPDATE SET
                 status = ${subscription.status},
-                current_period_start = to_timestamp(${subscription.current_period_start}),
-                current_period_end = to_timestamp(${subscription.current_period_end}),
+                current_period_start = to_timestamp(${subscription.currentPeriodStart}),
+                current_period_end = to_timestamp(${subscription.currentPeriodEnd}),
                 updated_at = NOW()
             `;
           }
