@@ -236,10 +236,56 @@
 
             <div class="cta-box">
                 <p>Interested in getting your model evaluated?</p>
-                <a href="mailto:hi@cyclecore.ai" class="btn btn-primary">Contact Us</a>
+                <button id="checkout-btn" class="btn btn-primary">Get Started</button>
             </div>
         </div>
     </section>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <h2>Request Model Evaluation</h2>
+
+            <form id="checkout-form">
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required placeholder="your@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="modelName">Model Name *</label>
+                    <input type="text" id="modelName" name="modelName" required placeholder="e.g., MyModel-7B">
+                </div>
+
+                <div class="form-group">
+                    <label for="huggingfaceUrl">HuggingFace URL *</label>
+                    <input type="url" id="huggingfaceUrl" name="huggingfaceUrl" required placeholder="https://huggingface.co/username/model">
+                </div>
+
+                <div class="form-group">
+                    <label for="productType">Evaluation Package *</label>
+                    <select id="productType" name="productType" required onchange="updatePrice()">
+                        <option value="">Select a package...</option>
+                        <option value="single">Single Verification - $20</option>
+                        <option value="pack">Verification Pack (5 models) - $79</option>
+                        <option value="enterprise">Enterprise (monthly) - $499</option>
+                    </select>
+                </div>
+
+                <div id="price-display" style="text-align: center; margin: 1rem 0; color: var(--cc-accent-cyan); font-weight: bold; font-size: 1.2rem;">
+                    Select a package above
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; cursor: pointer;">
+                    Proceed to Payment
+                </button>
+                <p style="text-align: center; margin-top: 0.5rem; color: var(--cc-text-secondary); font-size: var(--cc-text-sm);">
+                    Secure payment via Stripe
+                </p>
+            </form>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="site-footer">
@@ -726,6 +772,107 @@
             color: var(--cc-accent-cyan);
         }
 
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--cc-gray-900);
+            border: 1px solid var(--cc-gray-800);
+            border-radius: 12px;
+            padding: var(--cc-space-lg);
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-close {
+            position: absolute;
+            right: var(--cc-space-md);
+            top: var(--cc-space-md);
+            background: none;
+            border: none;
+            color: var(--cc-text-secondary);
+            font-size: 28px;
+            cursor: pointer;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: var(--cc-text-primary);
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+            margin-bottom: var(--cc-space-lg);
+            color: var(--cc-text-primary);
+            font-size: var(--cc-text-2xl);
+        }
+
+        .form-group {
+            margin-bottom: var(--cc-space-md);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: var(--cc-space-xs);
+            color: var(--cc-text-primary);
+            font-weight: var(--cc-weight-semibold);
+            font-size: var(--cc-text-sm);
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: var(--cc-space-sm);
+            border: 1px solid var(--cc-gray-800);
+            border-radius: 6px;
+            background: var(--cc-gray-800);
+            color: var(--cc-text-primary);
+            font-size: var(--cc-text-base);
+            transition: border-color 0.2s;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--cc-accent-cyan);
+        }
+
+        .form-group input::placeholder {
+            color: var(--cc-text-tertiary);
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            color: var(--cc-accent-cyan);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .nav-menu {
@@ -744,7 +891,112 @@
             .footer-links {
                 grid-template-columns: 1fr;
             }
+
+            .modal-content {
+                width: 95%;
+                padding: var(--cc-space-md);
+            }
         }
     </style>
+
+    <script>
+        // API endpoint - point to DigitalOcean API
+        const API_BASE_URL = 'https://api.cyclecore.ai';  // Replace with actual DigitalOcean API domain when deployed
+
+        // Modal elements
+        const modal = document.getElementById('checkout-modal');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const closeBtn = document.querySelector('.modal-close');
+        const checkoutForm = document.getElementById('checkout-form');
+
+        // Open modal on button click
+        checkoutBtn.addEventListener('click', () => {
+            modal.classList.add('active');
+        });
+
+        // Close modal on X click
+        closeBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+
+        // Close modal on background click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+
+        // Update price display when product selected
+        function updatePrice() {
+            const productType = document.getElementById('productType').value;
+            const priceDisplay = document.getElementById('price-display');
+
+            const prices = {
+                single: '$20 - Single Model Verification',
+                pack: '$79 - Verification Pack (5 Models)',
+                enterprise: '$499/month - Enterprise Unlimited'
+            };
+
+            priceDisplay.textContent = prices[productType] || 'Select a package above';
+        }
+
+        // Handle form submission
+        checkoutForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const modelName = document.getElementById('modelName').value;
+            const huggingfaceUrl = document.getElementById('huggingfaceUrl').value;
+            const productType = document.getElementById('productType').value;
+
+            // Validate
+            if (!email || !modelName || !huggingfaceUrl || !productType) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            // Show loading state
+            const submitBtn = checkoutForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Processing...';
+            submitBtn.disabled = true;
+
+            try {
+                // Call the create-checkout API
+                const response = await fetch(`${API_BASE_URL}/api/stripe/create-checkout`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email,
+                        modelName,
+                        huggingfaceUrl,
+                        productType
+                    })
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.error || 'Failed to create checkout session');
+                }
+
+                const data = await response.json();
+
+                // Redirect to Stripe
+                if (data.url) {
+                    window.location.href = data.url;
+                } else {
+                    throw new Error('No checkout URL returned');
+                }
+
+            } catch (error) {
+                console.error('Checkout error:', error);
+                alert(`Error: ${error.message}\n\nPlease try again or contact support@cyclecore.ai`);
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
 </body>
 </html>
