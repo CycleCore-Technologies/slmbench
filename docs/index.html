@@ -106,8 +106,25 @@
     <!-- EdgeJSON Leaderboard -->
     <section class="leaderboard-preview" id="leaderboard">
         <div class="container">
-            <h2 class="section-title">EdgeJSON Benchmark Leaderboard</h2>
-            <p class="section-subtitle">Real-world structured JSON extraction performance</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--cc-space-md);">
+                <div>
+                    <h2 class="section-title" style="margin-bottom: 0;">EdgeJSON Benchmark Leaderboard</h2>
+                    <p class="section-subtitle" style="margin-top: var(--cc-space-xs);">Real-world structured JSON extraction performance</p>
+                </div>
+                <div style="display: flex; gap: var(--cc-space-sm); align-items: center;">
+                    <span style="color: var(--cc-text-tertiary); font-size: var(--cc-text-sm);">Updated: Nov 27, 2025</span>
+                    <button id="share-leaderboard-btn" class="btn-share" title="Share leaderboard">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="18" cy="5" r="3"></circle>
+                            <circle cx="6" cy="12" r="3"></circle>
+                            <circle cx="18" cy="19" r="3"></circle>
+                            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                        </svg>
+                        Share
+                    </button>
+                </div>
+            </div>
 
             <div class="leaderboard-table">
                 <table class="benchmark-table">
@@ -499,6 +516,33 @@
 
         .btn-accent {
             color: var(--cc-accent-cyan);
+        }
+
+        /* Share Button */
+        .btn-share {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: var(--cc-gray-800);
+            color: var(--cc-text-primary);
+            border: 1px solid var(--cc-gray-700);
+            border-radius: 6px;
+            font-size: var(--cc-text-sm);
+            font-weight: var(--cc-weight-semibold);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-share:hover {
+            background: var(--cc-gray-700);
+            border-color: var(--cc-accent-cyan);
+            color: var(--cc-accent-cyan);
+        }
+
+        .btn-share svg {
+            width: 16px;
+            height: 16px;
         }
 
         /* Features */
@@ -943,6 +987,54 @@
     <script>
         // API endpoint - point to DigitalOcean API
         const API_BASE_URL = 'https://api.cyclecore.ai';  // Replace with actual DigitalOcean API domain when deployed
+
+        // Share Leaderboard functionality
+        const shareLeaderboardBtn = document.getElementById('share-leaderboard-btn');
+        
+        if (shareLeaderboardBtn) {
+            shareLeaderboardBtn.addEventListener('click', async () => {
+                const shareUrl = window.location.origin + window.location.pathname + '#leaderboard';
+                const shareTitle = 'EdgeJSON Benchmark Leaderboard - SLMBench';
+                const shareText = 'Check out the EdgeJSON leaderboard: Maaza-360M beats DeepSeek-R1-1.5B (JSON-optimized) by 3.4× on structured JSON extraction!';
+                
+                // Try native Web Share API first (mobile-friendly)
+                if (navigator.share) {
+                    try {
+                        await navigator.share({
+                            title: shareTitle,
+                            text: shareText,
+                            url: shareUrl
+                        });
+                        return;
+                    } catch (err) {
+                        // User cancelled or error, fall back to clipboard
+                        if (err.name !== 'AbortError') {
+                            console.log('Share failed:', err);
+                        }
+                    }
+                }
+                
+                // Fallback: Copy to clipboard
+                try {
+                    await navigator.clipboard.writeText(shareUrl);
+                    
+                    // Show feedback
+                    const originalText = shareLeaderboardBtn.innerHTML;
+                    shareLeaderboardBtn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Copied!';
+                    shareLeaderboardBtn.style.borderColor = 'var(--cc-accent-cyan)';
+                    shareLeaderboardBtn.style.color = 'var(--cc-accent-cyan)';
+                    
+                    setTimeout(() => {
+                        shareLeaderboardBtn.innerHTML = originalText;
+                        shareLeaderboardBtn.style.borderColor = '';
+                        shareLeaderboardBtn.style.color = '';
+                    }, 2000);
+                } catch (err) {
+                    console.error('Failed to copy:', err);
+                    alert('Share URL: ' + shareUrl);
+                }
+            });
+        }
 
         // Modal elements
         const modal = document.getElementById('checkout-modal');
