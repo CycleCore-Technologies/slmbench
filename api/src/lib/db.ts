@@ -5,8 +5,11 @@ let pool: Pool | null = null;
 
 export function getPool(): Pool {
   if (!pool) {
+    // Strip sslmode parameter from connection string to prevent it from overriding our SSL config
+    const connectionString = process.env.POSTGRES_URL?.replace(/[?&]sslmode=\w+/, '') || '';
+
     pool = new Pool({
-      connectionString: process.env.POSTGRES_URL,
+      connectionString,
       ssl: {
         rejectUnauthorized: false, // DigitalOcean requires SSL but with self-signed cert
       },
