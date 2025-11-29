@@ -248,6 +248,7 @@
                         <li>48-hour turnaround</li>
                         <li>Email support</li>
                     </ul>
+                    <button class="btn btn-primary tier-cta" data-product="single" style="width: 100%; margin-top: var(--cc-space-md);">Buy Now</button>
                 </div>
 
                 <!-- Verification Pack -->
@@ -262,6 +263,7 @@
                         <li>Priority queue</li>
                         <li>Bulk certificate download</li>
                     </ul>
+                    <button class="btn btn-primary tier-cta" data-product="pack" style="width: 100%; margin-top: var(--cc-space-md);">Buy Now</button>
                 </div>
 
                 <!-- Enterprise -->
@@ -276,6 +278,7 @@
                         <li>Custom benchmarks (1/quarter)</li>
                         <li>White-label reports</li>
                     </ul>
+                    <button class="btn btn-primary tier-cta" data-product="enterprise" style="width: 100%; margin-top: var(--cc-space-md);">Buy Now</button>
                 </div>
             </div>
 
@@ -778,6 +781,28 @@
             margin-right: 8px;
         }
 
+        /* Tier CTA Button Enhancements */
+        .tier-cta {
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .tier-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 255, 255, 0.3);
+        }
+
+        .pricing-card-featured .tier-cta {
+            background: linear-gradient(135deg, var(--cc-accent-cyan) 0%, #00d4d4 100%);
+            font-weight: var(--cc-weight-bold);
+            box-shadow: 0 4px 15px rgba(0, 255, 255, 0.2);
+        }
+
+        .pricing-card-featured .tier-cta:hover {
+            box-shadow: 0 8px 25px rgba(0, 255, 255, 0.4);
+        }
+
         .cta-box {
             text-align: center;
             padding: var(--cc-space-lg);
@@ -1041,10 +1066,39 @@
         const checkoutBtn = document.getElementById('checkout-btn');
         const closeBtn = document.querySelector('.modal-close');
         const checkoutForm = document.getElementById('checkout-form');
+        const productTypeSelect = document.getElementById('productType');
 
-        // Open modal on button click
-        checkoutBtn.addEventListener('click', () => {
+        // Function to open modal with optional pre-selected product
+        function openModal(productType = null) {
             modal.classList.add('active');
+            if (productType) {
+                productTypeSelect.value = productType;
+                updatePrice();
+            }
+        }
+
+        // Open modal on main "Get Started" button click
+        checkoutBtn.addEventListener('click', () => {
+            openModal();
+        });
+
+        // Open modal on tier-specific "Buy Now" buttons
+        document.querySelectorAll('.tier-cta').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const productType = btn.getAttribute('data-product');
+                openModal(productType);
+            });
+        });
+
+        // Make all "Request Evaluation" links open the modal
+        document.querySelectorAll('a[href="#evaluation"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Scroll to evaluation section
+                document.getElementById('evaluation').scrollIntoView({ behavior: 'smooth' });
+                // Open modal after brief delay for smooth scrolling
+                setTimeout(() => openModal(), 300);
+            });
         });
 
         // Close modal on X click
